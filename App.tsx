@@ -17,6 +17,7 @@ import {
 
 import theme from './src/global/styles/theme';
 import { Home } from './src/screens/Home';
+import { CarDetails } from './src/screens/CarDetails';
 
 export default function App() {
   const [fontLoaded] = useFonts({
@@ -35,7 +36,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <>
         <StatusBar style='light'/>
-        <Home />
+        <CarDetails />
       </>
     </ThemeProvider>
   );

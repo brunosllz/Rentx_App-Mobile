@@ -20,7 +20,7 @@ export const Brand = styled.Text`
     color: ${({ theme }) => theme.COLORS.text};
     
     font-size: ${RFValue(10)}px;
-    font-family: ${({ theme }) => theme.FONTS.primary_semiBold};
+    font-family: ${({ theme }) => theme.FONTS.primary_medium};
 
     text-transform: uppercase;
 `;
@@ -29,7 +29,7 @@ export const CarName = styled.Text`
     color: ${({ theme }) => theme.COLORS.heading};
     
     font-size: ${RFValue(15)}px;
-    font-family: ${({ theme }) => theme.FONTS.primary_semiBold};
+    font-family: ${({ theme }) => theme.FONTS.primary_medium};
 `;
 
 export const AboutInfoWrapper = styled.View`
@@ -40,24 +40,25 @@ export const Period = styled.Text`
     color: ${({ theme }) => theme.COLORS.text};
     
     font-size: ${RFValue(10)}px;
-    font-family: ${({ theme }) => theme.FONTS.primary_semiBold};
+    font-family: ${({ theme }) => theme.FONTS.primary_medium};
+    
+    text-transform: uppercase;
 `;
 
 export const PriceAndtypeWrapper = styled.View`
     flex-direction: row;
-
 `;
 
 export const Price = styled.Text`
     color: ${({ theme }) => theme.COLORS.primary};
     
     font-size: ${RFValue(15)}px;
-    font-family: ${({ theme }) => theme.FONTS.secondary_medium};
+    font-family: ${({ theme }) => theme.FONTS.primary_medium};
 
     padding-right: 24px;
 `;
 
-export const ImageCar = styled.Image`
-    width: 167px;
-    height: 85px;
+export const CarImage = styled.Image`
+    width: ${RFValue(160)}px;
+    height: ${RFValue(92)}px;
 `;

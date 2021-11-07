@@ -8,39 +8,56 @@ import {
     Period,
     PriceAndtypeWrapper,
     Price,
-    ImageCar
+    CarImage
 } from './styles';
 
 import ConsumptionTypeSvg from '../../assets/gasoline.svg';
 
-export function CarCard() {
+interface CarData {
+    brand: string;
+    name: string;
+    rent: {
+        period: string;
+        price: number;
+    }
+    thumbnail: string;
+}
+
+interface Props {
+    data: CarData;
+}
+
+export function CarCard({ data }: Props) {
    return(
         <Container>
             <InfoWrapper>
                 <Brand>
-                    PORSCHE
+                    {data.brand}
                 </Brand>
 
                 <CarName>
-                    Panamera
+                    {data.name}
                 </CarName>
 
                 <AboutInfoWrapper>
                     <Period>
-                        AO DIA
+                        {data.rent.period}
                     </Period>
 
                     <PriceAndtypeWrapper>
                         <Price>
-                            R$ 340
+                            {`R$ ${data.rent.price}`}
                         </Price>
 
-                        <ConsumptionTypeSvg />
+                        <ConsumptionTypeSvg width={20} height={20}/>
                     </PriceAndtypeWrapper>
                 </AboutInfoWrapper>
             </InfoWrapper>
 
-            <ImageCar source={{ uri: 'https://e7.pngegg.com/pngimages/464/370/png-clipart-porsche-porsche.png' }}/>
+            <CarImage 
+                source={{ uri:  data.thumbnail}}
+                resizeMode='contain'    
+            />
         </Container>
    );
 }

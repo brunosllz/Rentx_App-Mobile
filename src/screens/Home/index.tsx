@@ -4,15 +4,35 @@ import { CarCard } from '../../components/CarCard';
 import { Header } from '../../components/Header';
 
 import {
-    Container
+    Container,
+    CarList
 } from './styles';
 
 export function Home() {
+    const carData = {
+        brand: "porsche",
+        name: "Panamera",
+        rent: {
+            period: "ao dia",
+            price: 120
+        },
+        thumbnail:  'https://e7.pngegg.com/pngimages/464/370/png-clipart-porsche-porsche.png'
+    }
+
    return(
         <Container>
             <Header/>
 
-            <CarCard/>
+            <CarList
+                data={[1, 2, 3, 4, 5, 6]}
+                keyExtractor={item => String(item)}
+                renderItem={item => 
+                    <CarCard
+                        data={carData}
+                    />
+                }
+                showsVerticalScrollIndicator={false}
+            />
         </Container>
    );
 }
