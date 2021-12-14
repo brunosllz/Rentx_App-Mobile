@@ -16,7 +16,7 @@ export const Icon = styled(MaterialIcons)<ColorsProps>`
     font-size: ${RFValue(24)}px;
     color: ${({color, theme}) =>
         color === 'gray' ? 
-        theme.COLORS.shape_dark
+        theme.COLORS.text
         :
         theme.COLORS.background_secondary
     };

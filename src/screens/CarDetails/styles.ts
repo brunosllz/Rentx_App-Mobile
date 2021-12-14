@@ -1,10 +1,11 @@
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
     flex: 1;
     
-    padding-top: ${getStatusBarHeight()}px;
+   
 `;
 
 export const Header = styled.View`
@@ -12,4 +13,53 @@ export const Header = styled.View`
 
     align-items: center;
     justify-content: space-between;
+
+    margin: 0 ${RFValue(24)}px;
+    margin-top: ${getStatusBarHeight() + 20}px;
+    position: absolute;
+`;
+
+export const ImageSliderWrapper = styled.View`
+    margin-top: ${getStatusBarHeight() + 32}px;
+`;
+
+export const Content = styled.ScrollView.attrs({
+    contentContainerStyle: {
+        padding: 24,
+        alignItems: 'center'
+    },
+    showsVerticalScrollIndicator: false
+})``;
+
+export const Details = styled.View`
+    width: 100%;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 38px;
+`;
+export const Description = styled.View`
+
+`;
+export const Brand = styled.Text`
+    font-size: ${RFValue(10)}px;
+    text-transform: uppercase;
+    font-family: ${({ theme }) => theme.FONTS.primary_medium};
+    color: ${({ theme }) => theme.COLORS.text_detail};
+`;
+export const Model = styled.Text`
+    font-size: ${RFValue(25)}px;
+    text-transform: uppercase;
+    font-family: ${({ theme }) => theme.FONTS.primary_medium};
+    color: ${({ theme }) => theme.COLORS.text_detail};
+`;
+export const Rent = styled.View`
+
+`;
+export const Period = styled.Text`
+
+`;
+export const Price = styled.Text`
+
 `;
