@@ -1,8 +1,4 @@
 import React from 'react';
-import { BackButton } from '../../components/BackButton';
-import { ImageSlider } from '../../components/ImageSlider';
-
-
 import {
     Container,
     Header,
@@ -14,8 +10,21 @@ import {
     Model,
     Rent,
     Period,
-    Price
+    Price,
+    AcessoryWrapper,
+    About
 } from './styles';
+
+import SpeedSvg from '../../assets/speed.svg';
+import AccelerationSvg from '../../assets/acceleration.svg';
+import ExchangeSvg from '../../assets/exchange.svg';
+import PeopleSvg from '../../assets/people.svg';
+import GasolineSvg from '../../assets/gasoline.svg';
+import ForceSvg from '../../assets/force.svg';
+
+import { BackButton } from '../../components/BackButton';
+import { ImageSlider } from '../../components/ImageSlider';
+import { CarAcessory } from '../../components/CarAcessory';
 
 interface Props {
    
@@ -53,6 +62,19 @@ export function CarDetails() {
                         </Price>
                     </Rent>
                 </Details>
+
+                <AcessoryWrapper>
+                    <CarAcessory name='380km/h' icon={SpeedSvg}/>
+                    <CarAcessory name='3.2s' icon={AccelerationSvg}/>
+                    <CarAcessory name='800 HP' icon={ForceSvg}/>
+                    <CarAcessory name='Gasolina' icon={GasolineSvg}/>
+                    <CarAcessory name='Auto' icon={ExchangeSvg}/>
+                    <CarAcessory name='2 pessoas' icon={PeopleSvg}/>
+                </AcessoryWrapper>
+
+                <About>
+                    Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.
+                </About>
             </Content>
         </Container>
    );
