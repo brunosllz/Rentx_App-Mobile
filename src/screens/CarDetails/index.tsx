@@ -12,7 +12,8 @@ import {
     Period,
     Price,
     AcessoryWrapper,
-    About
+    About,
+    Footer
 } from './styles';
 
 import SpeedSvg from '../../assets/speed.svg';
@@ -25,6 +26,7 @@ import ForceSvg from '../../assets/force.svg';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { CarAcessory } from '../../components/CarAcessory';
+import { Button } from '../../components/Button';
 
 interface Props {
    
@@ -76,6 +78,12 @@ export function CarDetails() {
                     Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.
                 </About>
             </Content>
+
+            <Footer>
+                <Button
+                    title='Escolher período do aluguel'
+                />
+            </Footer>
         </Container>
    );
 }
