@@ -15,6 +15,7 @@ import {
 import ArrowSvg from '../../assets/arrow.svg';
 import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
+import { Calendar } from '../../components/Calendar';
 
 export function Scheduling() {
    return (
@@ -46,7 +47,7 @@ export function Scheduling() {
          </Header>
 
          <Content>
-
+            <Calendar />
          </Content>
 
          <Footer>
