@@ -1802,6 +1802,22 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.5.tgz#75a2a8e7d8ab4b230414505d92335d1dcb53a6df"
   integrity sha512-L28j2FcJfSZOnL1WBjDYp2vUHCeIFlyYI/53EwD/rKUBQ7MtUUfbQWiyKJGpcnv4/WgrhWsFKrcPstcAt/J0tQ==
 
+"@types/react-native-calendars@^1.1264.3":
+  version "1.1264.3"
+  resolved "https://registry.yarnpkg.com/@types/react-native-calendars/-/react-native-calendars-1.1264.3.tgz#fb3f766a7f8f058cee8d5cb7f0c175dce0c8a407"
+  integrity sha512-0PCHDtDFC7Q2YZgtAjoHS3amPmOhUsMysyS6YNYjDqKmpJ4Qir+CK8RHTN+b+r93X//eaGyYaIbu9vCh+ydKlw==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+    "@types/xdate" "*"
+
+"@types/react-native@*":
+  version "0.66.9"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.66.9.tgz#a051d1f1f3cd03df4b4870e91e416b71377a8b7a"
+  integrity sha512-lve1rgQadbOM82ZRiw6CvvManUeidDhlFtiXA+dErI7a7/NNxLM7kZVYDNKd/QQc5FgLlQ0Uof2QInup7OwsBg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-native@^0.65":
   version "0.65.13"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.65.13.tgz#e400317cdb57a9b09112d3ee21100cadb550be16"
@@ -1847,6 +1863,11 @@
     "@types/hoist-non-react-statics" "*"
     "@types/react" "*"
     csstype "^3.0.2"
+
+"@types/xdate@*":
+  version "0.8.32"
+  resolved "https://registry.yarnpkg.com/@types/xdate/-/xdate-0.8.32.tgz#52f1bc426cc6929474034e5e3b83f82f43e25dcd"
+  integrity sha512-giM6hmU4ZCCAQj8BVSMNMA8hQwvKuWewLIe7r+G5NtGvehqW9jXdF/V6CzzkQYgHsk+67/udxql3RdfR8zqSNA==
 
 "@types/yargs-parser@*":
   version "20.2.1"
@@ -3091,6 +3112,14 @@ expo-modules-core@~0.4.4, expo-modules-core@~0.4.5, expo-modules-core@~0.4.7:
     compare-versions "^3.4.0"
     invariant "^2.2.4"
 
+expo-modules-core@~0.4.8:
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/expo-modules-core/-/expo-modules-core-0.4.9.tgz#e808ca8a70c4ac0da2cfc7040e48a4c67aeee5b3"
+  integrity sha512-yuwYoEQMZNSysufsYgJVmncpeGopNi8Q3y5Q7MM05PT90Sc5CGqbYwJMYomF7MprTZAxCvayoRBCKgOlzutWog==
+  dependencies:
+    compare-versions "^3.4.0"
+    invariant "^2.2.4"
+
 expo-splash-screen@~0.13.3:
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/expo-splash-screen/-/expo-splash-screen-0.13.4.tgz#70de5dcbb5bbd3ce88185e830d84f123c8afafe1"
@@ -3099,6 +3128,15 @@ expo-splash-screen@~0.13.3:
     "@expo/configure-splash-screen" "^0.6.0"
     "@expo/prebuild-config" "^3.0.6"
     expo-modules-core "~0.4.4"
+
+expo-splash-screen@~0.13.5:
+  version "0.13.5"
+  resolved "https://registry.yarnpkg.com/expo-splash-screen/-/expo-splash-screen-0.13.5.tgz#ece76c092f2ce88e4660a70e532ed47909a01ddd"
+  integrity sha512-L/L0XlmmxSoyuooCVvbPBO4xUF9kAs+F0+fML3pf7miBOnTd/v9j5riKSmaDthNtM4AarXxgi0AXzSHQ1M3rZg==
+  dependencies:
+    "@expo/configure-splash-screen" "^0.6.0"
+    "@expo/prebuild-config" "^3.0.6"
+    expo-modules-core "~0.4.7"
 
 expo-status-bar@~1.1.0:
   version "1.1.0"
@@ -3115,16 +3153,16 @@ expo-updates-interface@~0.4.0:
   resolved "https://registry.yarnpkg.com/expo-updates-interface/-/expo-updates-interface-0.4.0.tgz#20961f2cb4bd068a74c29434affa08791dbaa240"
   integrity sha512-EUJaLnDAePikGEQT8w6gjCY3m/dlGgjZKVn5XBaxZMkHzOy3PDQo6QOcK/bcMdkA3CyNrvo6NCe+/7RHrgmK4A==
 
-expo-updates@~0.10.5:
-  version "0.10.9"
-  resolved "https://registry.yarnpkg.com/expo-updates/-/expo-updates-0.10.9.tgz#17ed869fe0bbc506f53ff8af4283def2fc08242c"
-  integrity sha512-DOFZ/P23hDrVQ53zJ8/ayWJbrwO/WuOV9puSo3nGDsp3Hbd0ubWha2NCwYegIJdR4VIPyJgK/EXUOAciOjxhNg==
+expo-updates@~0.10.15:
+  version "0.10.15"
+  resolved "https://registry.yarnpkg.com/expo-updates/-/expo-updates-0.10.15.tgz#1fcfd78ff615307809ad38a3d37eaa67f7268282"
+  integrity sha512-GHh1e0BwJY7aT+huGfneXpMhPKKkDIOBqCWyZDyTo7AWLj2C2ZCvgT2D9LWyl6v9WwxMEfO94RaYCQaayD/rfw==
   dependencies:
     "@expo/config" "^5.0.9"
     "@expo/config-plugins" "^4.0.2"
     "@expo/metro-config" "~0.1.84"
     expo-manifests "~0.2.2"
-    expo-modules-core "~0.4.7"
+    expo-modules-core "~0.4.8"
     expo-structured-headers "~2.0.0"
     expo-updates-interface "~0.4.0"
     fbemitter "^2.1.1"
@@ -4345,11 +4383,6 @@ mdn-data@2.0.4:
   resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.4.tgz#699b3c38ac6f1d728091a64650b65d388502fd5b"
   integrity sha512-iV3XNKw06j5Q7mi6h+9vbx23Tv7JkjEVgKHW4pimwyDGWm0OIQntJJ+u1C6mg6mK1EaTv42XQ7w76yuzH7M2cA==
 
-memoize-one@^5.2.1:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-5.2.1.tgz#8337aa3c4335581839ec01c3d594090cebe8f00e"
-  integrity sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q==
-
 merge-deep@^3.0.2:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/merge-deep/-/merge-deep-3.0.3.tgz#1a2b2ae926da8b2ae93a0ac15d90cd1922766003"
@@ -5362,20 +5395,18 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-native-calendars@^1.1274.0:
-  version "1.1274.0"
-  resolved "https://registry.yarnpkg.com/react-native-calendars/-/react-native-calendars-1.1274.0.tgz#a2c74d3cadc0b37c32b85247f30bd18c8266e86a"
-  integrity sha512-Dt+0Juscm3+bllriT4xYSYAb0bG8+z4/w7yQoydyqEotjB0UA+XZx4WBWVkJ10jm7H8PO1UmLlboJEaIq5s/sw==
+react-native-calendars@^1.505.0:
+  version "1.505.0"
+  resolved "https://registry.yarnpkg.com/react-native-calendars/-/react-native-calendars-1.505.0.tgz#0eba6b4229e1ecf66aba015bd9e3b1b0b6cb86f3"
+  integrity sha512-U5+Lu7osqNByyAhCapH3TDLBNHDIv7lNA5T9eLnY+LFw8olJkM7WDlLFLpE+RTXcMY1hLI6GjaSg9o5Qpyz3cQ==
   dependencies:
     hoist-non-react-statics "^3.3.1"
     immutable "^4.0.0-rc.12"
     lodash "^4.17.15"
-    memoize-one "^5.2.1"
+    moment "^2.24.0"
     prop-types "^15.5.10"
     react-native-swipe-gestures "^1.0.5"
     xdate "^0.8.0"
-  optionalDependencies:
-    moment "^2.24.0"
 
 react-native-codegen@^0.0.6:
   version "0.0.6"

@@ -29,14 +29,14 @@ export default function App() {
     Inter_500Medium
   })
 
-  if(!fontLoaded) {
+  if (!fontLoaded) {
     return <AppLoading />
   }
 
   return (
     <ThemeProvider theme={theme}>
       <>
-        <StatusBar style='light'/>
+        <StatusBar style='light' />
         <Scheduling />
       </>
     </ThemeProvider>
