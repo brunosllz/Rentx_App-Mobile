@@ -1,12 +1,11 @@
 import React from 'react';
-import { CarCard } from '../../components/CarCard';
-
-import { Header } from '../../components/Header';
-
 import {
     Container,
     CarList
 } from './styles';
+
+import { CarCard } from '../../components/CarCard';
+import { Header } from '../../components/Header';
 
 export function Home() {
     const carData = {
@@ -16,17 +15,17 @@ export function Home() {
             period: "ao dia",
             price: 120
         },
-        thumbnail:  'https://e7.pngegg.com/pngimages/464/370/png-clipart-porsche-porsche.png'
+        thumbnail: 'https://e7.pngegg.com/pngimages/464/370/png-clipart-porsche-porsche.png'
     }
 
-   return(
+    return (
         <Container>
-            <Header/>
+            <Header />
 
             <CarList
                 data={[1, 2, 3, 4, 5, 6]}
                 keyExtractor={item => String(item)}
-                renderItem={item => 
+                renderItem={item =>
                     <CarCard
                         data={carData}
                     />
@@ -34,5 +33,5 @@ export function Home() {
                 showsVerticalScrollIndicator={false}
             />
         </Container>
-   );
+    );
 }

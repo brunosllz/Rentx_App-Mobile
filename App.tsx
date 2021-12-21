@@ -19,6 +19,7 @@ import theme from './src/global/styles/theme';
 import { Home } from './src/screens/Home';
 import { CarDetails } from './src/screens/CarDetails';
 import { Scheduling } from './src/screens/Scheduling';
+import { SchedulingDetails } from './src/screens/SchedulingDetails';
 
 export default function App() {
   const [fontLoaded] = useFonts({
@@ -37,7 +38,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <>
         <StatusBar style='light' />
-        <Scheduling />
+        <SchedulingDetails />
       </>
     </ThemeProvider>
   );
