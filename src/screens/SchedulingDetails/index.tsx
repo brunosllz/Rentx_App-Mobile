@@ -17,7 +17,12 @@ import {
     CalendarIcon,
     DateInfo,
     DateTitle,
-    DateValue
+    DateValue,
+    RentalPrice,
+    RentalPriceInfo,
+    RentalPriceLabel,
+    RentalPriceQuota,
+    RentalPriceTotal
 } from './styles';
 import { useTheme } from 'styled-components';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -108,11 +113,21 @@ export function SchedulingDetails() {
                         <DateValue>20/06/21</DateValue>
                     </DateInfo>
                 </RentalPeriod>
+
+                <RentalPrice>
+                    <RentalPriceInfo>
+                        <RentalPriceLabel>TOTAL</RentalPriceLabel>
+                        <RentalPriceQuota>R$ 580 x3 diárias</RentalPriceQuota>
+                    </RentalPriceInfo>
+
+                    <RentalPriceTotal>R$ 2.900</RentalPriceTotal>
+                </RentalPrice>
             </Content>
 
             <Footer>
                 <Button
-                    title='Escolher período do aluguel'
+                    title='Alugar agora'
+                    color='green'
                 />
             </Footer>
         </Container>

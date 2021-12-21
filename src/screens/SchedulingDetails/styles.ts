@@ -23,7 +23,7 @@ export const ImageSliderWrapper = styled.View`
 
 export const Content = styled.ScrollView.attrs({
     contentContainerStyle: {
-        paddingVertical: 24,
+        paddingVertical: 5,
         alignItems: 'center'
     },
     showsVerticalScrollIndicator: false
@@ -105,6 +105,7 @@ export const RentalPeriod = styled.View`
     justify-content: space-between;
 
     padding: ${RFValue(15)}px ${RFValue(24)}px;
+    margin-top: ${RFValue(10)}px;
 
     border-bottom-width: 0.5px;
     border-bottom-color: ${({ theme }) => theme.COLORS.text_detail};
@@ -127,6 +128,8 @@ export const DateTitle = styled.Text`
     color: ${({ theme }) => theme.COLORS.text_detail};
     font-size: ${RFValue(10)}px;
     font-family: ${({ theme }) => theme.FONTS.primary_medium};
+
+    text-transform: uppercase;
 `;
 
 export const DateValue = styled.Text`
@@ -135,4 +138,41 @@ export const DateValue = styled.Text`
     font-family: ${({ theme }) => theme.FONTS.secondary_medium};
 
     margin-top: ${RFValue(5)}px;
+`;
+
+export const RentalPrice = styled.View`
+    width: 100%;
+
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: ${RFValue(15)}px ${RFValue(24)}px;
+`;
+
+export const RentalPriceInfo = styled.View`
+
+`;
+
+export const RentalPriceLabel = styled.Text`
+    color: ${({ theme }) => theme.COLORS.text_detail};
+    font-size: ${RFValue(10)}px;
+    font-family: ${({ theme }) => theme.FONTS.primary_medium};
+
+    text-transform: uppercase;
+`;
+
+export const RentalPriceQuota = styled.Text`
+    color: ${({ theme }) => theme.COLORS.heading};
+    font-size: ${RFValue(15)}px;
+    font-family: ${({ theme }) => theme.FONTS.secondary_medium};
+
+    margin-top: ${RFValue(5)}px;
+`;
+
+export const RentalPriceTotal = styled.Text`
+    color: ${({ theme }) => theme.COLORS.active};
+    font-size: ${RFValue(24)}px;
+    font-family: ${({ theme }) => theme.FONTS.primary_medium};
 `;
