@@ -11,6 +11,7 @@ import {
     CarImage
 } from './styles';
 import { RectButtonProps } from 'react-native-gesture-handler';
+
 import { CarDTO } from '../../dtos/CarDTO';
 
 import ConsumptionTypeSvg from '../../assets/gasoline.svg';

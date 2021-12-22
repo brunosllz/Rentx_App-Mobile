@@ -16,7 +16,9 @@ import {
     Footer
 } from './styles';
 import { StatusBar } from 'expo-status-bar';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+
+import { CarDTO } from '../../dtos/CarDTO';
 
 import SpeedSvg from '../../assets/speed.svg';
 import AccelerationSvg from '../../assets/acceleration.svg';
@@ -30,15 +32,21 @@ import { ImageSlider } from '../../components/ImageSlider';
 import { CarAcessory } from '../../components/CarAcessory';
 import { Button } from '../../components/Button';
 
-interface Props {
-
+interface Params {
+    car: CarDTO
 }
 
 export function CarDetails() {
     const navigation = useNavigation<any>();
+    const route = useRoute();
+    const { car } = route.params as Params;
 
     function handleScheduling() {
         navigation.navigate({ name: 'Scheduling' });
+    }
+
+    function handleBack() {
+        navigation.goBack()
     }
 
     return (
@@ -47,22 +55,22 @@ export function CarDetails() {
 
             <Header>
                 <BackButton
-                    onPress={() => { }}
+                    onPress={handleBack}
                     color='gray'
                 />
             </Header>
 
             <ImageSliderWrapper>
                 <ImageSlider
-                    imageUrl={['https://e7.pngegg.com/pngimages/464/370/png-clipart-porsche-porsche.png']}
+                    imageUrl={car.photos}
                 />
             </ImageSliderWrapper>
 
             <Content>
                 <Details>
                     <Description>
-                        <Brand>lamborghini</Brand>
-                        <Model>Huracan</Model>
+                        <Brand>{car.brand}</Brand>
+                        <Model>{car.name}</Model>
                     </Description>
 
                     <Rent>

@@ -7,27 +7,27 @@ import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
 import api from '../../service/api';
 
+import { CarDTO } from '../../dtos/CarDTO';
+
 import { CarCard } from '../../components/CarCard';
 import { Header } from '../../components/Header';
-import { CarDTO } from '../../dtos/CarDTO';
+
+interface NavigationProps {
+    navigate: (
+        screen: string,
+        carObject: {
+            car: CarDTO
+        }
+    ) => void
+}
 
 export function Home() {
     const [cars, setcars] = useState<CarDTO[]>([]);
     const [loading, setloading] = useState(true);
-    const navigation = useNavigation<any>();
+    const navigation = useNavigation<NavigationProps>();
 
-    const carData = {
-        brand: "porsche",
-        name: "Panamera",
-        rent: {
-            period: "ao dia",
-            price: 120
-        },
-        thumbnail: 'https://e7.pngegg.com/pngimages/464/370/png-clipart-porsche-porsche.png'
-    }
-
-    function handleCarDetails() {
-        navigation.navigate({ name: 'CarDetails' });
+    function handleCarDetails(car: CarDTO) {
+        navigation.navigate('CarDetails', { car });
     }
 
     useEffect(() => {
@@ -57,7 +57,7 @@ export function Home() {
                 renderItem={({ item }) =>
                     <CarCard
                         data={item}
-                        onPress={handleCarDetails}
+                        onPress={() => handleCarDetails(item)}
                     />
                 }
                 showsVerticalScrollIndicator={false}
