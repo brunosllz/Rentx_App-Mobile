@@ -9,9 +9,11 @@ import api from '../../service/api';
 
 import { CarCard } from '../../components/CarCard';
 import { Header } from '../../components/Header';
+import { CarDTO } from '../../dtos/CarDTO';
 
 export function Home() {
-    const [cars, setcars] = useState();
+    const [cars, setcars] = useState<CarDTO[]>([]);
+    const [loading, setloading] = useState(true);
     const navigation = useNavigation<any>();
 
     const carData = {
@@ -32,12 +34,11 @@ export function Home() {
         async function fetchCars() {
             try {
                 const response = await api.get('/cars');
-
-                !response ? [] : setcars(response.data);
-
-                console.log(response);
+                setcars(response.data);
             } catch (error) {
                 console.log(error);
+            } finally {
+                setloading(false);
             }
         }
 
@@ -51,11 +52,11 @@ export function Home() {
             <Header />
 
             <CarList
-                data={[1, 2, 3, 4, 5, 6]}
-                keyExtractor={item => String(item)}
-                renderItem={item =>
+                data={cars}
+                keyExtractor={item => item.id}
+                renderItem={({ item }) =>
                     <CarCard
-                        data={carData}
+                        data={item}
                         onPress={handleCarDetails}
                     />
                 }
