@@ -26,6 +26,7 @@ import {
 } from './styles';
 import { useTheme } from 'styled-components';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { StatusBar } from 'expo-status-bar';
 
 import SpeedSvg from '../../assets/speed.svg';
 import AccelerationSvg from '../../assets/acceleration.svg';
@@ -49,6 +50,8 @@ export function SchedulingDetails() {
 
     return (
         <Container>
+            <StatusBar style='dark' translucent={true} />
+
             <Header>
                 <BackButton
                     onPress={() => { }}

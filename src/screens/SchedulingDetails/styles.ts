@@ -152,7 +152,6 @@ export const RentalPrice = styled.View`
 `;
 
 export const RentalPriceInfo = styled.View`
-
 `;
 
 export const RentalPriceLabel = styled.Text`

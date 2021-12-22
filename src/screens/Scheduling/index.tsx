@@ -11,6 +11,7 @@ import {
    Content,
    Footer
 } from './styles';
+import { StatusBar } from 'expo-status-bar';
 
 import ArrowSvg from '../../assets/arrow.svg';
 
@@ -21,6 +22,8 @@ import { Calendar } from '../../components/Calendar';
 export function Scheduling() {
    return (
       <Container>
+         <StatusBar style='light' translucent={true} />
+
          <Header>
             <ButtonWrapper>
                <BackButton

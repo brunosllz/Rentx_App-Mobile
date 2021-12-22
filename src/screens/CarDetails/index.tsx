@@ -15,6 +15,7 @@ import {
     About,
     Footer
 } from './styles';
+import { StatusBar } from 'expo-status-bar';
 
 import SpeedSvg from '../../assets/speed.svg';
 import AccelerationSvg from '../../assets/acceleration.svg';
@@ -29,15 +30,17 @@ import { CarAcessory } from '../../components/CarAcessory';
 import { Button } from '../../components/Button';
 
 interface Props {
-   
+
 }
 
 export function CarDetails() {
-   return(
+    return (
         <Container>
+            <StatusBar style='dark' translucent={true} />
+
             <Header>
                 <BackButton
-                    onPress={() => {}}
+                    onPress={() => { }}
                     color='gray'
                 />
             </Header>
@@ -66,12 +69,12 @@ export function CarDetails() {
                 </Details>
 
                 <AcessoryWrapper>
-                    <CarAcessory name='380km/h' icon={SpeedSvg}/>
-                    <CarAcessory name='3.2s' icon={AccelerationSvg}/>
-                    <CarAcessory name='800 HP' icon={ForceSvg}/>
-                    <CarAcessory name='Gasolina' icon={GasolineSvg}/>
-                    <CarAcessory name='Auto' icon={ExchangeSvg}/>
-                    <CarAcessory name='2 pessoas' icon={PeopleSvg}/>
+                    <CarAcessory name='380km/h' icon={SpeedSvg} />
+                    <CarAcessory name='3.2s' icon={AccelerationSvg} />
+                    <CarAcessory name='800 HP' icon={ForceSvg} />
+                    <CarAcessory name='Gasolina' icon={GasolineSvg} />
+                    <CarAcessory name='Auto' icon={ExchangeSvg} />
+                    <CarAcessory name='2 pessoas' icon={PeopleSvg} />
                 </AcessoryWrapper>
 
                 <About>
@@ -85,5 +88,5 @@ export function CarDetails() {
                 />
             </Footer>
         </Container>
-   );
+    );
 }

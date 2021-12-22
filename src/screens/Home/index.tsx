@@ -3,6 +3,7 @@ import {
     Container,
     CarList
 } from './styles';
+import { StatusBar } from 'expo-status-bar';
 
 import { CarCard } from '../../components/CarCard';
 import { Header } from '../../components/Header';
@@ -20,6 +21,8 @@ export function Home() {
 
     return (
         <Container>
+            <StatusBar style='light' translucent={true} />
+
             <Header />
 
             <CarList

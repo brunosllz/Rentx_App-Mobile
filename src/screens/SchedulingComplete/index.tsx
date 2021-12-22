@@ -8,6 +8,7 @@ import {
     Footer
 } from './styles';
 import { useWindowDimensions } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 import LogoSvg from '../../assets/logo_background_gray.svg';
 import DoneSvg from '../../assets/done.svg';
@@ -18,6 +19,8 @@ export function SchedulingComplete() {
 
     return (
         <Container>
+            <StatusBar style='light' translucent={true} />
+
             <LogoSvg width={width} height={height / 3} />
 
             <Content>
