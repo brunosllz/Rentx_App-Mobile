@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
     Container,
     Header,
@@ -16,6 +16,7 @@ import {
     Footer
 } from './styles';
 import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from '@react-navigation/native';
 
 import SpeedSvg from '../../assets/speed.svg';
 import AccelerationSvg from '../../assets/acceleration.svg';
@@ -34,6 +35,12 @@ interface Props {
 }
 
 export function CarDetails() {
+    const navigation = useNavigation<any>();
+
+    function handleScheduling() {
+        navigation.navigate({ name: 'Scheduling' });
+    }
+
     return (
         <Container>
             <StatusBar style='dark' translucent={true} />
@@ -85,6 +92,7 @@ export function CarDetails() {
             <Footer>
                 <Button
                     title='Escolher período do aluguel'
+                    onPress={handleScheduling}
                 />
             </Footer>
         </Container>

@@ -8,6 +8,7 @@ interface DateValueProps {
 
 export const Container = styled.View`
     flex: 1;
+    background-color: ${({ theme }) => theme.COLORS.background_secondary};
 `;
 
 export const Header = styled.View`
@@ -21,7 +22,7 @@ export const Header = styled.View`
 
 export const ButtonWrapper = styled.View`
     align-items: flex-start;
-    margin-top: ${getStatusBarHeight() + RFValue(20)}px;
+    margin-top: ${getStatusBarHeight() + RFValue(20)}px; 
 `;
 
 export const Title = styled.Text`

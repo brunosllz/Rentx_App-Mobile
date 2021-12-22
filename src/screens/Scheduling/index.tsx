@@ -12,6 +12,7 @@ import {
    Footer
 } from './styles';
 import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from '@react-navigation/native';
 
 import ArrowSvg from '../../assets/arrow.svg';
 
@@ -20,6 +21,12 @@ import { Button } from '../../components/Button';
 import { Calendar } from '../../components/Calendar';
 
 export function Scheduling() {
+   const navigation = useNavigation<any>();
+
+   function handleSchedulingDetails() {
+      navigation.navigate({ name: 'SchedulingDetails' });
+   }
+
    return (
       <Container>
          <StatusBar style='light' translucent={true} />
@@ -58,6 +65,7 @@ export function Scheduling() {
             <Button
                title='Confirmar'
                color='red'
+               onPress={handleSchedulingDetails}
             />
          </Footer>
       </Container>

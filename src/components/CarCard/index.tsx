@@ -10,6 +10,7 @@ import {
     Price,
     CarImage
 } from './styles';
+import { RectButtonProps } from 'react-native-gesture-handler';
 
 import ConsumptionTypeSvg from '../../assets/gasoline.svg';
 
@@ -23,13 +24,13 @@ interface CarData {
     thumbnail: string;
 }
 
-interface Props {
+interface Props extends RectButtonProps {
     data: CarData;
 }
 
-export function CarCard({ data }: Props) {
-   return(
-        <Container>
+export function CarCard({ data, ...rest }: Props) {
+    return (
+        <Container {...rest}>
             <InfoWrapper>
                 <Brand>
                     {data.brand}
@@ -49,15 +50,15 @@ export function CarCard({ data }: Props) {
                             {`R$ ${data.rent.price}`}
                         </Price>
 
-                        <ConsumptionTypeSvg width={20} height={20}/>
+                        <ConsumptionTypeSvg width={20} height={20} />
                     </PriceAndtypeWrapper>
                 </AboutInfoWrapper>
             </InfoWrapper>
 
-            <CarImage 
-                source={{ uri:  data.thumbnail}}
-                resizeMode='contain'    
+            <CarImage
+                source={{ uri: data.thumbnail }}
+                resizeMode='contain'
             />
         </Container>
-   );
+    );
 }

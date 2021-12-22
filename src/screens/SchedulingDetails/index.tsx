@@ -27,6 +27,7 @@ import {
 import { useTheme } from 'styled-components';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from '@react-navigation/native';
 
 import SpeedSvg from '../../assets/speed.svg';
 import AccelerationSvg from '../../assets/acceleration.svg';
@@ -47,6 +48,11 @@ interface Props {
 
 export function SchedulingDetails() {
     const theme = useTheme();
+    const navigation = useNavigation<any>()
+
+    function handleSchedulingComplete() {
+        navigation.navigate({ name: 'SchedulingComplete' });
+    }
 
     return (
         <Container>
@@ -131,6 +137,7 @@ export function SchedulingDetails() {
                 <Button
                     title='Alugar agora'
                     color='green'
+                    onPress={handleSchedulingComplete}
                 />
             </Footer>
         </Container>

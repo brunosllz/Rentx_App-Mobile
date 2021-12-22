@@ -4,11 +4,14 @@ import {
     CarList
 } from './styles';
 import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from '@react-navigation/native';
 
 import { CarCard } from '../../components/CarCard';
 import { Header } from '../../components/Header';
 
 export function Home() {
+    const navigation = useNavigation<any>();
+
     const carData = {
         brand: "porsche",
         name: "Panamera",
@@ -17,6 +20,10 @@ export function Home() {
             price: 120
         },
         thumbnail: 'https://e7.pngegg.com/pngimages/464/370/png-clipart-porsche-porsche.png'
+    }
+
+    function handleCarDetails() {
+        navigation.navigate({ name: 'CarDetails' });
     }
 
     return (
@@ -31,6 +38,7 @@ export function Home() {
                 renderItem={item =>
                     <CarCard
                         data={carData}
+                        onPress={handleCarDetails}
                     />
                 }
                 showsVerticalScrollIndicator={false}
