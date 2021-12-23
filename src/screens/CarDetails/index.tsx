@@ -19,13 +19,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { CarDTO } from '../../dtos/CarDTO';
-
-import SpeedSvg from '../../assets/speed.svg';
-import AccelerationSvg from '../../assets/acceleration.svg';
-import ExchangeSvg from '../../assets/exchange.svg';
-import PeopleSvg from '../../assets/people.svg';
-import GasolineSvg from '../../assets/gasoline.svg';
-import ForceSvg from '../../assets/force.svg';
+import { getAcessoryIcon } from '../../utils/getAccessoryIcon';
 
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
@@ -75,7 +69,7 @@ export function CarDetails() {
 
                     <Rent>
                         <Period>
-                            ao dia
+                            {car.rent.period}
                         </Period>
                         <Price>
                             R$ {car.rent.price}
@@ -84,12 +78,15 @@ export function CarDetails() {
                 </Details>
 
                 <AcessoryWrapper>
-                    <CarAcessory name='380km/h' icon={SpeedSvg} />
-                    <CarAcessory name='3.2s' icon={AccelerationSvg} />
-                    <CarAcessory name='800 HP' icon={ForceSvg} />
-                    <CarAcessory name='Gasolina' icon={GasolineSvg} />
-                    <CarAcessory name='Auto' icon={ExchangeSvg} />
-                    <CarAcessory name='2 pessoas' icon={PeopleSvg} />
+                    {
+                        car.accessories.map(acessory => (
+                            <CarAcessory
+                                key={acessory.type}
+                                name={acessory.name}
+                                icon={getAcessoryIcon(acessory.type)}
+                            />
+                        ))
+                    }
                 </AcessoryWrapper>
 
                 <About>
