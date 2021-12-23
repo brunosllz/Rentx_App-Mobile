@@ -19,11 +19,12 @@ export const Header = styled.View`
 
 export const ImageSliderWrapper = styled.View`
     margin-top: ${getStatusBarHeight() + 32}px;
+    margin-bottom: ${RFValue(10)}px;
 `;
 
 export const Content = styled.ScrollView.attrs({
     contentContainerStyle: {
-        paddingVertical: 24,
+        paddingVertical: 10,
         alignItems: 'center'
     },
     showsVerticalScrollIndicator: false

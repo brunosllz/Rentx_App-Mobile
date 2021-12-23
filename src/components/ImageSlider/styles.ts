@@ -21,7 +21,7 @@ export const IndexImgame = styled.View<ImageIndexProps>`
    width: 6px;
    height: 6px;
    
-   background-color: ${({ theme, active }) => 
+   background-color: ${({ theme, active }) =>
       active ? theme.COLORS.heading : theme.COLORS.shape
    };
 

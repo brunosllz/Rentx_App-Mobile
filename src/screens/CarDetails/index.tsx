@@ -78,7 +78,7 @@ export function CarDetails() {
                             ao dia
                         </Period>
                         <Price>
-                            R$ 580
+                            R$ {car.rent.price}
                         </Price>
                     </Rent>
                 </Details>
@@ -93,7 +93,7 @@ export function CarDetails() {
                 </AcessoryWrapper>
 
                 <About>
-                    Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.
+                    {car.about}
                 </About>
             </Content>
 
