@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {
     Container,
-    CarList
+    CarList,
+    LoadWrapper
 } from './styles';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
@@ -11,6 +12,7 @@ import { CarDTO } from '../../dtos/CarDTO';
 
 import { CarCard } from '../../components/CarCard';
 import { Header } from '../../components/Header';
+import { Load } from '../../components/Load';
 
 interface NavigationProps {
     navigate: (
@@ -50,18 +52,25 @@ export function Home() {
             <StatusBar style='light' translucent={true} />
 
             <Header />
-
-            <CarList
-                data={cars}
-                keyExtractor={item => item.id}
-                renderItem={({ item }) =>
-                    <CarCard
-                        data={item}
-                        onPress={() => handleCarDetails(item)}
+            {
+                loading ?
+                    <LoadWrapper>
+                        <Load />
+                    </LoadWrapper>
+                    :
+                    <CarList
+                        data={cars}
+                        keyExtractor={item => item.id}
+                        renderItem={({ item }) =>
+                            <CarCard
+                                data={item}
+                                onPress={() => handleCarDetails(item)}
+                            />
+                        }
+                        showsVerticalScrollIndicator={false}
                     />
-                }
-                showsVerticalScrollIndicator={false}
-            />
+
+            }
         </Container>
     );
 }
