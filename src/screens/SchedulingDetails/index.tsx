@@ -54,14 +54,18 @@ export function SchedulingDetails() {
         navigation.navigate({ name: 'SchedulingComplete' });
     }
 
+    function handleBack() {
+        navigation.goBack()
+    }
+
     return (
         <Container>
             <StatusBar style='dark' translucent={true} />
 
             <Header>
                 <BackButton
-                    onPress={() => { }}
                     color='gray'
+                    onPress={handleBack}
                 />
             </Header>
 

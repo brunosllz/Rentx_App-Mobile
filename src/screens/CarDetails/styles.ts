@@ -13,12 +13,12 @@ export const Header = styled.View`
     justify-content: space-between;
 
     margin: 0 ${RFValue(24)}px;
-    margin-top: ${getStatusBarHeight() + 20}px;
+    margin-top: ${getStatusBarHeight() + RFValue(20)}px;
     position: absolute;
 `;
 
 export const ImageSliderWrapper = styled.View`
-    margin-top: ${getStatusBarHeight() + 32}px;
+    margin-top: ${getStatusBarHeight() + RFValue(32)}px;
     margin-bottom: ${RFValue(10)}px;
 `;
 

@@ -13,7 +13,7 @@ export const Header = styled.View`
     justify-content: space-between;
 
     margin: 0 ${RFValue(24)}px;
-    margin-top: ${getStatusBarHeight() + 20}px;
+    margin-top: ${getStatusBarHeight() + RFValue(20)}px;
     position: absolute;
 `;
 
