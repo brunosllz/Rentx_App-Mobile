@@ -72,10 +72,10 @@ export function SchedulingDetails() {
             await api.put(`schedules_bycars/${car.id}`, {
                 id: car.id,
                 unavailable_dates
-            })
+            });
         } catch (error) {
-            Alert.alert('Não foi possível concluir o agendamento')
-            console.log(error)
+            Alert.alert('Não foi possível concluir o agendamento');
+            console.log(error);
         }
 
         navigation.navigate({ name: 'SchedulingComplete' });
@@ -90,8 +90,6 @@ export function SchedulingDetails() {
             start: format(getUtfDate(new Date(dates[0])), 'dd/MM/yyyy'),
             end: format(getUtfDate(new Date(dates[dates.length - 1])), 'dd/MM/yyyy')
         })
-
-        console.log(car.id);
     }, [])
 
 

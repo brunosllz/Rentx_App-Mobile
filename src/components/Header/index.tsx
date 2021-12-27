@@ -9,7 +9,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import LogoSvg from '../../assets/logo.svg';
 
 interface Props {
-    amountCar?: number;
+    amountCar: number;
 }
 
 export function Header({ amountCar }: Props) {
@@ -22,7 +22,12 @@ export function Header({ amountCar }: Props) {
                 />
 
                 <TotalCars>
-                    Total de {amountCar} carros
+                    {
+                        amountCar > 1 ?
+                            `Total de ${amountCar} carros`
+                            :
+                            `Total de ${amountCar} carro`
+                    }
                 </TotalCars>
             </HeaderContent>
         </Container>

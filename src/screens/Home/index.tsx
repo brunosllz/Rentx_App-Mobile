@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import {
     Container,
     CarList,
-    LoadWrapper
+    LoadWrapper,
+    MyCarButton,
+    Icon
 } from './styles';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
@@ -17,7 +19,7 @@ import { Load } from '../../components/Load';
 interface NavigationProps {
     navigate: (
         screen: string,
-        carObject: {
+        carObject?: {
             car: CarDTO
         }
     ) => void;
@@ -30,6 +32,10 @@ export function Home() {
 
     function handleCarDetails(car: CarDTO) {
         navigation.navigate('CarDetails', { car });
+    }
+
+    function handleMycar() {
+        navigation.navigate('MyCar');
     }
 
     useEffect(() => {
@@ -51,7 +57,9 @@ export function Home() {
         <Container>
             <StatusBar style='light' translucent={true} />
 
-            <Header />
+            <Header
+                amountCar={cars.length}
+            />
             {
                 loading ?
                     <LoadWrapper>
@@ -69,8 +77,11 @@ export function Home() {
                         }
                         showsVerticalScrollIndicator={false}
                     />
-
             }
+
+            <MyCarButton onPress={handleMycar}>
+                <Icon name='car-sport' size={32} />
+            </MyCarButton>
         </Container>
     );
 }
