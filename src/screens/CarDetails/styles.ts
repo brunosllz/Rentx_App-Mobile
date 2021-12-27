@@ -24,7 +24,7 @@ export const ImageSliderWrapper = styled.View`
 
 export const Content = styled.ScrollView.attrs({
     contentContainerStyle: {
-        paddingVertical: 10,
+        paddingVertical: RFValue(10),
         alignItems: 'center'
     },
     showsVerticalScrollIndicator: false

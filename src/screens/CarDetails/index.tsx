@@ -23,7 +23,7 @@ import { getAcessoryIcon } from '../../utils/getAccessoryIcon';
 
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
-import { CarAcessory } from '../../components/CarAcessory';
+import { CarAccessory } from '../../components/CarAccessory';
 import { Button } from '../../components/Button';
 
 interface Params {
@@ -90,7 +90,7 @@ export function CarDetails() {
                 <AcessoryWrapper>
                     {
                         car.accessories.map(acessory => (
-                            <CarAcessory
+                            <CarAccessory
                                 key={acessory.type}
                                 name={acessory.name}
                                 icon={getAcessoryIcon(acessory.type)}

@@ -18,12 +18,13 @@ export const Header = styled.View`
 `;
 
 export const ImageSliderWrapper = styled.View`
-    margin-top: ${getStatusBarHeight() + 32}px;
+   margin-top: ${getStatusBarHeight() + RFValue(32)}px;
+    margin-bottom: ${RFValue(10)}px;
 `;
 
 export const Content = styled.ScrollView.attrs({
     contentContainerStyle: {
-        paddingVertical: 5,
+        paddingVertical: RFValue(10),
         alignItems: 'center'
     },
     showsVerticalScrollIndicator: false
@@ -72,7 +73,7 @@ export const Price = styled.Text`
     text-transform: uppercase;
 `;
 
-export const AcessoryWrapper = styled.View`
+export const AccessoryWrapper = styled.View`
     width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
