@@ -30,13 +30,23 @@ interface Params {
     car: CarDTO
 }
 
+interface NavigationProps {
+    goBack: () => void;
+    navigate: (
+        screen: string,
+        carObject: {
+            car: CarDTO,
+        }
+    ) => void;
+}
+
 export function CarDetails() {
-    const navigation = useNavigation<any>();
+    const navigation = useNavigation<NavigationProps>();
     const route = useRoute();
     const { car } = route.params as Params;
 
     function handleScheduling() {
-        navigation.navigate({ name: 'Scheduling' });
+        navigation.navigate('Scheduling', { car });
     }
 
     function handleBack() {

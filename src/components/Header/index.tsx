@@ -4,7 +4,6 @@ import {
     TotalCars,
     HeaderContent
 } from './styles';
-
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import LogoSvg from '../../assets/logo.svg';

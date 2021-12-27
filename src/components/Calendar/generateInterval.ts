@@ -14,7 +14,7 @@ export function generateInterval(start: DayProps, end: DayProps) {
             ...interval,
             [date]: {
                 color: start.dateString === date || end.dateString === date ? theme.COLORS.primary : theme.COLORS.primary_light,
-                textColor: start.dateString === date || end.dateString === date ? theme.COLORS.background_secondary : theme.COLORS.primary,
+                textColor: start.dateString === date || end.dateString === date ? theme.COLORS.background_secondary : theme.COLORS.primary
             }
         }
     });

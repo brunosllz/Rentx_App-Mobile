@@ -20,7 +20,7 @@ interface NavigationProps {
         carObject: {
             car: CarDTO
         }
-    ) => void
+    ) => void;
 }
 
 export function Home() {
