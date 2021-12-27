@@ -24,12 +24,14 @@ import {
     RentalPriceQuota,
     RentalPriceTotal
 } from './styles';
+import { Alert } from 'react-native';
 import { useTheme } from 'styled-components';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { format } from 'date-fns';
 
+import api from '../../service/api';
 import { getAcessoryIcon } from '../../utils/getAccessoryIcon';
 import { CarDTO } from '../../dtos/CarDTO';
 import { getUtfDate } from '../../components/Calendar/getUtfDate';
@@ -56,7 +58,26 @@ export function SchedulingDetails() {
     const route = useRoute();
     const { car, dates } = route.params as Params;
 
-    function handleSchedulingComplete() {
+    const rentTotal = Number(dates.length * car.rent.price);
+
+    async function handleSchedulingComplete() {
+        const response = await api.get(`schedules_bycars/${car.id}`);
+
+        const unavailable_dates = [
+            ...response.data.unavailable_dates,
+            ...dates
+        ];
+
+        try {
+            await api.put(`schedules_bycars/${car.id}`, {
+                id: car.id,
+                unavailable_dates
+            })
+        } catch (error) {
+            Alert.alert('Não foi possível concluir o agendamento')
+            console.log(error)
+        }
+
         navigation.navigate({ name: 'SchedulingComplete' });
     }
 
@@ -69,6 +90,8 @@ export function SchedulingDetails() {
             start: format(getUtfDate(new Date(dates[0])), 'dd/MM/yyyy'),
             end: format(getUtfDate(new Date(dates[dates.length - 1])), 'dd/MM/yyyy')
         })
+
+        console.log(car.id);
     }, [])
 
 
@@ -147,10 +170,18 @@ export function SchedulingDetails() {
                 <RentalPrice>
                     <RentalPriceInfo>
                         <RentalPriceLabel>TOTAL</RentalPriceLabel>
-                        <RentalPriceQuota>R$ 580 x3 diárias</RentalPriceQuota>
+                        <RentalPriceQuota>
+                            {
+                                dates.length > 1 ?
+                                    `R$ ${car.rent.price} x${dates.length} diárias`
+                                    :
+                                    `R$ ${car.rent.price} x${dates.length} diária`
+
+                            }
+                        </RentalPriceQuota>
                     </RentalPriceInfo>
 
-                    <RentalPriceTotal>R$ 2.900</RentalPriceTotal>
+                    <RentalPriceTotal>R$ {rentTotal}</RentalPriceTotal>
                 </RentalPrice>
             </Content>
 
