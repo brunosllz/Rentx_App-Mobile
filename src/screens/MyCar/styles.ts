@@ -37,4 +37,28 @@ export const Description = styled.Text`
 `;
 
 export const Content = styled.View`
+    flex: 1;
+`;
+
+export const Appointments = styled.View`
+    width: 100%;
+
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 29px ${RFValue(24)}px;
+`;
+
+export const AppointmentsTitle = styled.Text`
+    color: ${({ theme }) => theme.COLORS.text};
+    font-size: ${RFValue(15)}px;
+    font-family: ${({ theme }) => theme.FONTS.secondary_regular};
+`;
+
+export const AppointmentsAmount = styled.Text`
+    color: ${({ theme }) => theme.COLORS.text};
+    font-size: ${RFValue(15)}px;
+    font-family: ${({ theme }) => theme.FONTS.secondary_regular};
 `;

@@ -5,17 +5,28 @@ import {
     ButtonWrapper,
     Title,
     Description,
-    Content
+    Content,
+    Appointments,
+    AppointmentsTitle,
+    AppointmentsAmount,
 } from './styles';
+import { FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { CarDTO } from '../../dtos/CarDTO';
 
 import { BackButton } from '../../components/BackButton';
 import api from '../../service/api';
+import { CarCard } from '../../components/CarCard';
+
+interface CarProps {
+    user_id: string;
+    id: string;
+    car: CarDTO
+}
 
 export function MyCar() {
-    const [cars, setCars] = useState<CarDTO>({} as CarDTO)
+    const [cars, setCars] = useState<CarProps[]>([]);
     const [loading, setLoading] = useState(true);
     const navigation = useNavigation<any>()
 
@@ -53,7 +64,25 @@ export function MyCar() {
             </Header>
 
             <Content>
+                <Appointments>
+                    <AppointmentsTitle>
+                        Agendamentos feitos
+                    </AppointmentsTitle>
+                    <AppointmentsAmount>
+                        02
+                    </AppointmentsAmount>
+                </Appointments>
 
+                <FlatList
+                    data={cars}
+                    keyExtractor={item => item.id}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({ item }) => (
+                        <CarCard
+                            data={item.car}
+                        />
+                    )}
+                />
             </Content>
         </Container>
     );
