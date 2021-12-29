@@ -18,7 +18,7 @@ export const LoadWrapper = styled.View`
 
 export const CarList = styled(FlatList as new () => FlatList<CarDTO>).attrs({
     contentContainerStyle: {
-        padding: 16
+        padding: 16,
     }
 })``;
 
@@ -39,4 +39,8 @@ export const MyCarButton = styled(RectButton)`
 
 export const Icon = styled(Ionicons)`
     color: ${({ theme }) => theme.COLORS.background_secondary};
+`;
+
+export const CarWrapper = styled.View`
+    margin-bottom: 16px;
 `;

@@ -12,7 +12,6 @@ export const Container = styled(RectButton)`
     justify-content: space-between;
 
     padding: 24px;
-    margin-bottom: 16px;
 `;
 
 export const InfoWrapper = styled.View``;

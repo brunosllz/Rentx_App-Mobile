@@ -4,7 +4,8 @@ import {
     CarList,
     LoadWrapper,
     MyCarButton,
-    Icon
+    Icon,
+    CarWrapper
 } from './styles';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
@@ -69,13 +70,15 @@ export function Home() {
                     <CarList
                         data={cars}
                         keyExtractor={item => item.id}
-                        renderItem={({ item }) =>
-                            <CarCard
-                                data={item}
-                                onPress={() => handleCarDetails(item)}
-                            />
-                        }
                         showsVerticalScrollIndicator={false}
+                        renderItem={({ item }) =>
+                            <CarWrapper>
+                                <CarCard
+                                    data={item}
+                                    onPress={() => handleCarDetails(item)}
+                                />
+                            </CarWrapper>
+                        }
                     />
             }
 

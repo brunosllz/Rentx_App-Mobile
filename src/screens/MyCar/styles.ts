@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
    flex: 1;
+   background-color: ${({ theme }) => theme.COLORS.background_primary};
 `;
 
 export const Header = styled.View`
@@ -60,5 +61,46 @@ export const AppointmentsTitle = styled.Text`
 export const AppointmentsAmount = styled.Text`
     color: ${({ theme }) => theme.COLORS.text};
     font-size: ${RFValue(15)}px;
+    font-family: ${({ theme }) => theme.FONTS.secondary_regular};
+`;
+
+export const LoadWrapper = styled.View`
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const CarWrapper = styled.View`
+    margin-bottom: 16px;
+`;
+
+export const CarFooter = styled.View`
+    background-color: ${({ theme }) => theme.COLORS.background_secondary};
+    flex-direction: row;
+
+    height: ${RFValue(40)}px;
+    
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 ${RFValue(24)}px;
+    margin-top: 2px;
+`;
+
+export const CarFooterTittle = styled.Text`
+    color: ${({ theme }) => theme.COLORS.text_detail};
+    font-size: ${RFValue(10)}px;
+    font-family: ${({ theme }) => theme.FONTS.primary_medium};
+`;
+
+export const CarFooterPeriod = styled.View`
+    flex-direction: row;
+    
+    align-items: center;
+`;
+
+export const CarFooterDate = styled.Text`
+    color: ${({ theme }) => theme.COLORS.heading};
+    font-size: ${RFValue(13)}px;
     font-family: ${({ theme }) => theme.FONTS.secondary_regular};
 `;
