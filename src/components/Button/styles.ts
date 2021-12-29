@@ -6,8 +6,8 @@ interface ButtonProps {
     color?: 'green' | 'red';
 }
 
-export const Container = styled(RectButton)<ButtonProps>`
-    background-color: ${({ color ,theme }) => color === 'red' ? theme.COLORS.primary : theme.COLORS.active};
+export const Container = styled(RectButton) <ButtonProps>`
+    background-color: ${({ color, theme }) => color === 'red' ? theme.COLORS.primary : theme.COLORS.active};
     
     width: 100%;
     height: ${RFValue(56)}px;

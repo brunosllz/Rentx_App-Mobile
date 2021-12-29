@@ -11,7 +11,6 @@ import {
    Content,
    Footer
 } from './styles';
-import { Alert } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { format } from 'date-fns';
@@ -59,13 +58,10 @@ export function Scheduling() {
    const navigation = useNavigation<NavigationProps>();
 
    function handleSchedulingDetails() {
-      if (!rentalPeriod.startFormatted || !rentalPeriod.endFormatted) {
-         Alert.alert('Selecione o período do aluguel!');
-      } else
-         navigation.navigate('SchedulingDetails', {
-            car,
-            dates: Object.keys(markedDate)
-         });
+      navigation.navigate('SchedulingDetails', {
+         car,
+         dates: Object.keys(markedDate)
+      });
    }
 
    function handleBack() {
@@ -139,6 +135,7 @@ export function Scheduling() {
             <Button
                title='Confirmar'
                color='red'
+               enable={!!rentalPeriod.startFormatted}
                onPress={handleSchedulingDetails}
             />
          </Footer>
