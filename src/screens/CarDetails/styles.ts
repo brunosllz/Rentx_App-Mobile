@@ -82,7 +82,7 @@ export const AcessoryWrapper = styled.View`
     justify-content: space-between;
 
     margin-top: ${RFValue(16)}px;
-    padding: 0 16px;
+    padding: 0 ${RFValue(16)}px;
 `;
 
 export const About = styled.Text`

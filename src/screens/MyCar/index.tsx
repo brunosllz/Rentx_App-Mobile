@@ -121,30 +121,7 @@ export function MyCar() {
                                                 style={{ paddingHorizontal: 10 }}
                                             />
                                             <CarFooterDate>
-                                                {item.endDate
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                }
+                                                {item.endDate}
                                             </CarFooterDate>
                                         </CarFooterPeriod>
                                     </CarFooter>

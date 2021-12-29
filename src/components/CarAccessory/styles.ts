@@ -1,16 +1,17 @@
 import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { Dimensions } from 'react-native';
 
 export const Container = styled.View`
     background-color: ${({ theme }) => theme.COLORS.background_primary};
 
-    width: ${RFValue(105)}px;
+    width: ${Dimensions.get('window').width / 3.45}px;
     height: ${RFValue(92)}px;
 
     justify-content: center;
     align-items: center;
 
-    padding: ${RFValue(16)}px ;
+    padding: ${RFValue(16)}px;
     margin-bottom: ${RFValue(8)}px;
 `;
 
