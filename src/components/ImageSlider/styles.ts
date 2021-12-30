@@ -10,14 +10,14 @@ export const Container = styled.View`
    width: 100%;
 `;
 
-export const IndexImgameWrapper = styled.View`
+export const IndexImageWrapper = styled.View`
    flex-direction: row;
    align-self: flex-end;
    padding-right: ${RFValue(24)}px;
    padding-bottom: ${RFValue(32)}px;
 `;
 
-export const IndexImgame = styled.View<ImageIndexProps>`
+export const IndexImage = styled.View<ImageIndexProps>`
    width: 6px;
    height: 6px;
    
