@@ -16,7 +16,6 @@ export const LoadWrapper = styled.View`
     justify-content: center;
 `;
 
-
 export const CarList = styled(FlatList as new () => FlatList<CarDTO>).attrs({
     contentContainerStyle: {
         padding: 16,

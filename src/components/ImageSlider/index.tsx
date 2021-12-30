@@ -1,11 +1,12 @@
 import React from 'react';
+import { FlatList } from 'react-native';
 
 import {
-   Container,
-   IndexImgameWrapper,
-   IndexImgame,
-   CarImageWrapper,
-   CarImage
+    Container,
+    IndexImgameWrapper,
+    IndexImgame,
+    CarImageWrapper,
+    CarImage
 } from './styles';
 
 interface Props {
@@ -13,22 +14,34 @@ interface Props {
 }
 
 export function ImageSlider({ imageUrl }: Props) {
-   return(
-       <Container>
+    return (
+        <Container>
             <IndexImgameWrapper>
-                <IndexImgame active={true}/>
-                <IndexImgame active={false}/>
-                <IndexImgame active={false}/>
-                <IndexImgame active={false}/>
-           </IndexImgameWrapper>
+                {
+                    imageUrl.map((_, index) => (
+                        <IndexImgame
+                            key={index}
+                            active={true}
+                        />
+                    ))
+                }
 
-            <CarImageWrapper>
-                <CarImage 
-                    source={{uri: imageUrl[0]}}
+            </IndexImgameWrapper>
 
-                />
+            <FlatList
+                data={imageUrl}
+                keyExtractor={key => key}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item }) => (
+                    <CarImageWrapper>
+                        <CarImage
+                            source={{ uri: item }}
+                        />
+                    </CarImageWrapper>
+                )}
+            />
 
-            </CarImageWrapper>
-       </Container>
-   );
+        </Container>
+    );
 }
