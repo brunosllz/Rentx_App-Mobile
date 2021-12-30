@@ -1,4 +1,5 @@
 import React from 'react';
+import { RFValue } from 'react-native-responsive-fontsize';
 import { SvgProps } from 'react-native-svg';
 
 import {
@@ -14,7 +15,7 @@ interface Props {
 export function CarAccessory({ name, icon: Icon }: Props) {
     return (
         <Container>
-            <Icon width={32} height={32} />
+            <Icon width={RFValue(32)} height={RFValue(32)} />
             <Name>
                 {name}
             </Name>
