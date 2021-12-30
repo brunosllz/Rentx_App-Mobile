@@ -49,7 +49,7 @@ export const Appointments = styled.View`
     align-items: center;
     justify-content: space-between;
 
-    padding: 29px ${RFValue(24)}px;
+    padding: ${RFValue(24)}px ${RFValue(24)}px  ${RFValue(20)}px;
 `;
 
 export const AppointmentsTitle = styled.Text`
@@ -77,13 +77,11 @@ export const CarWrapper = styled.View`
 export const CarFooter = styled.View`
     background-color: ${({ theme }) => theme.COLORS.background_secondary};
     flex-direction: row;
-
-    height: ${RFValue(40)}px;
     
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 ${RFValue(24)}px;
+    padding: ${RFValue(12)}px ${RFValue(24)}px;
     margin-top: 2px;
 `;
 

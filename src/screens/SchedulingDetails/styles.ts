@@ -24,7 +24,7 @@ export const ImageSliderWrapper = styled.View`
 
 export const Content = styled.ScrollView.attrs({
     contentContainerStyle: {
-        paddingVertical: RFValue(10),
+        paddingVertical: RFValue(2),
         alignItems: 'center'
     },
     showsVerticalScrollIndicator: false
@@ -82,7 +82,7 @@ export const AccessoryWrapper = styled.View`
     justify-content: space-between;
 
     margin-top: ${RFValue(16)}px;
-    padding: 0 16px;
+    padding: 0 ${RFValue(16)}px;
 `;
 
 export const Footer = styled.View`

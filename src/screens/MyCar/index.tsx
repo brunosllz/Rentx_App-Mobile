@@ -98,6 +98,7 @@ export function MyCar() {
                             keyExtractor={item => item.id}
                             showsVerticalScrollIndicator={false}
                             contentContainerStyle={{
+                                paddingVertical: RFValue(10),
                                 paddingHorizontal: RFValue(16)
                             }}
                             renderItem={({ item }) => (
@@ -117,7 +118,7 @@ export function MyCar() {
                                             <AntDesign
                                                 name='arrowright'
                                                 color={theme.COLORS.text_detail}
-                                                size={20}
+                                                size={RFValue(20)}
                                                 style={{ paddingHorizontal: 10 }}
                                             />
                                             <CarFooterDate>

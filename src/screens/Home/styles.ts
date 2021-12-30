@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
 import { CarDTO } from '../../dtos/CarDTO';
 import { Ionicons } from '@expo/vector-icons';
-import { RectButton } from 'react-native-gesture-handler';
+import { RectButton, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
@@ -16,11 +16,17 @@ export const LoadWrapper = styled.View`
     justify-content: center;
 `;
 
+
 export const CarList = styled(FlatList as new () => FlatList<CarDTO>).attrs({
     contentContainerStyle: {
         padding: 16,
     }
 })``;
+
+export const CarWrapper = styled(GestureHandlerRootView)`
+    width: 100%;
+    margin-bottom: 16px;
+`;
 
 export const MyCarButton = styled(RectButton)`
     background-color: ${({ theme }) => theme.COLORS.primary};
@@ -39,8 +45,4 @@ export const MyCarButton = styled(RectButton)`
 
 export const Icon = styled(Ionicons)`
     color: ${({ theme }) => theme.COLORS.background_secondary};
-`;
-
-export const CarWrapper = styled.View`
-    margin-bottom: 16px;
 `;
