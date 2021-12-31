@@ -67,12 +67,9 @@ export function ImageSlider({ imageUrl }: Props) {
                                 source={{ uri: image }}
                             />
                         </CarImageWrapper>
-
                     ))
                 }
-
             </Animated.ScrollView>
-
         </Container>
     );
 }
