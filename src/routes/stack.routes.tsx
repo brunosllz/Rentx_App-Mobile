@@ -17,7 +17,6 @@ export function StackRoutes() {
             screenOptions={{
                 headerShown: false
             }}
-            initialRouteName="Splash"
         >
             <Screen
                 name="Splash"

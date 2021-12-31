@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {
     Container
 } from './styles';
-import { useNavigation } from '@react-navigation/native';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 
 import Animated, {
     interpolate,
@@ -21,7 +21,7 @@ interface NavigationProps {
 
 export function Splash() {
     const splashAnimated = useSharedValue(0);
-    const navigation = useNavigation<NavigationProps>();
+    const navigation = useNavigation();
 
     const brandAnimation = useAnimatedStyle(() => {
         return {
@@ -42,7 +42,14 @@ export function Splash() {
     })
 
     function startApp() {
-        navigation.navigate('Home');
+        navigation.dispatch(
+            CommonActions.reset({
+                index: 0,
+                routes: [{ name: 'Home' }]
+            })
+        )
+
+        // navigation.navigate('Home');
     }
 
     useEffect(() => {

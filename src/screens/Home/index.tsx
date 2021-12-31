@@ -7,10 +7,11 @@ import {
     Icon,
     CarWrapper
 } from './styles';
+import { BackHandler } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
-import api from '../../service/api';
 
+import api from '../../service/api';
 import { CarDTO } from '../../dtos/CarDTO';
 
 import { CarCard } from '../../components/CarCard';
@@ -52,7 +53,7 @@ export function Home() {
         }
 
         fetchCars();
-    }, [])
+    }, []);
 
     return (
         <Container>
