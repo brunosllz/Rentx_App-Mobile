@@ -37,7 +37,6 @@ export function ImageSlider({ imageUrl }: Props) {
                         />
                     ))
                 }
-
             </IndexImageWrapper>
 
             <FlatList
@@ -54,7 +53,6 @@ export function ImageSlider({ imageUrl }: Props) {
                     </CarImageWrapper>
                 )}
             />
-
         </Container>
     );
 }
