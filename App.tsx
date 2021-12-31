@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import AppLoading from 'expo-app-loading';
+import { LogBox } from 'react-native';
 
 import {
   useFonts,
@@ -31,6 +32,7 @@ export default function App() {
     return <AppLoading />
   }
 
+  LogBox.ignoreLogs(['Warning', 'Console']);
   return (
     <ThemeProvider theme={theme}>
       <Routes />

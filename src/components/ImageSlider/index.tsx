@@ -60,10 +60,10 @@ export function ImageSlider({ imageUrl }: Props) {
                 showsHorizontalScrollIndicator={false}
             >
                 {
-                    imageUrl.map(image => (
+                    imageUrl.map((image, index) => (
                         <CarImageWrapper>
                             <CarImage
-                                key={image}
+                                key={index.toString()}
                                 source={{ uri: image }}
                             />
                         </CarImageWrapper>
