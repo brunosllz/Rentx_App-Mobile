@@ -17,7 +17,7 @@ export const IndexImageWrapper = styled.View`
    padding-bottom: ${RFValue(32)}px;
 `;
 
-export const IndexImage = styled.View<ImageIndexProps>`
+export const IndexImgame = styled.View<ImageIndexProps>`
    width: 6px;
    height: 6px;
    

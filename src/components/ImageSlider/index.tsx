@@ -1,10 +1,18 @@
-import React, { useRef, useState } from 'react';
-import { FlatList, ViewToken } from 'react-native';
+import React from 'react';
+import { Dimensions, ScrollView } from 'react-native';
+
+import Animated, {
+    useAnimatedRef,
+    useAnimatedScrollHandler,
+    useDerivedValue,
+    useSharedValue
+} from 'react-native-reanimated';
+
+import { Dot } from '../DotImageSlider';
 
 import {
     Container,
     IndexImageWrapper,
-    IndexImage,
     CarImageWrapper,
     CarImage
 } from './styles';
@@ -13,46 +21,58 @@ interface Props {
     imageUrl: string[];
 }
 
-interface ChangeImageProps {
-    viewableItems: ViewToken[];
-    changed: ViewToken[];
-}
-
 export function ImageSlider({ imageUrl }: Props) {
-    const [imageIndex, setImageIndex] = useState(0);
+    const { width: SCREEN_WIDTH } = Dimensions.get('window');
+    const translateX = useSharedValue(0);
 
-    const indexChange = useRef((info: ChangeImageProps) => {
-        const index = info.viewableItems[0].index!;
-        setImageIndex(index);
+    const scrollHandler = useAnimatedScrollHandler({
+        onScroll: (event) => {
+            translateX.value = event.contentOffset.x;
+        },
     });
+
+    const activeIndex = useDerivedValue(() => {
+        return Math.round(translateX.value / SCREEN_WIDTH);
+    });
+
+    const scrollRef = useAnimatedRef<ScrollView>();
 
     return (
         <Container>
             <IndexImageWrapper>
                 {
                     imageUrl.map((_, index) => (
-                        <IndexImage
-                            key={index}
-                            active={index === imageIndex}
+                        <Dot
+                            key={index.toString()}
+                            index={index}
+                            activeDotIndex={activeIndex}
                         />
                     ))
                 }
             </IndexImageWrapper>
 
-            <FlatList
-                data={imageUrl}
-                keyExtractor={key => key}
+            <Animated.ScrollView
+                ref={scrollRef as any}
+                onScroll={scrollHandler}
+                pagingEnabled={true}
+                scrollEventThrottle={16}
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                onViewableItemsChanged={indexChange.current}
-                renderItem={({ item }) => (
-                    <CarImageWrapper>
-                        <CarImage
-                            source={{ uri: item }}
-                        />
-                    </CarImageWrapper>
-                )}
-            />
+            >
+                {
+                    imageUrl.map(image => (
+                        <CarImageWrapper>
+                            <CarImage
+                                key={image}
+                                source={{ uri: image }}
+                            />
+                        </CarImageWrapper>
+
+                    ))
+                }
+
+            </Animated.ScrollView>
+
         </Container>
     );
 }
