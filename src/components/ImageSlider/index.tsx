@@ -8,7 +8,7 @@ import Animated, {
     useSharedValue
 } from 'react-native-reanimated';
 
-import { Dot } from '../DotImageSlider';
+import { DotImageSlider } from '../DotImageSlider';
 
 import {
     Container,
@@ -42,7 +42,7 @@ export function ImageSlider({ imageUrl }: Props) {
             <IndexImageWrapper>
                 {
                     imageUrl.map((_, index) => (
-                        <Dot
+                        <DotImageSlider
                             key={index.toString()}
                             index={index}
                             activeDotIndex={activeIndex}

@@ -1,11 +1,10 @@
 import React from 'react';
 import {
-    Container
+    Container,
+    Dot
 } from './styles';
-import { StyleSheet } from 'react-native';
 
 import { useTheme } from 'styled-components';
-import { RFValue } from 'react-native-responsive-fontsize';
 
 import Animated, {
     useAnimatedStyle,
@@ -17,7 +16,7 @@ type DotProps = {
     activeDotIndex: Animated.SharedValue<number>
 }
 
-export function Dot({ index, activeDotIndex }: DotProps) {
+export function DotImageSlider({ index, activeDotIndex }: DotProps) {
     const theme = useTheme();
 
     const DotStyle = useAnimatedStyle(() => {
@@ -36,16 +35,7 @@ export function Dot({ index, activeDotIndex }: DotProps) {
 
     return (
         <Container>
-            <Animated.View style={[DotStyle, styles.dot]} />
+            <Dot style={[DotStyle]} />
         </Container>
     )
 }
-
-const styles = StyleSheet.create({
-    dot: {
-        width: 6,
-        height: 6,
-        borderRadius: 5,
-        marginHorizontal: RFValue(3)
-    }
-})
