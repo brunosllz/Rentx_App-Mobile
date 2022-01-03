@@ -11,12 +11,6 @@ export const Container = styled.View`
     background-color: ${({ theme }) => theme.COLORS.background_primary};
 `;
 
-export const LoadWrapper = styled.View`
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-`;
-
 export const CarList = styled(FlatList as new () => FlatList<CarDTO>).attrs({
     contentContainerStyle: {
         padding: 16,
@@ -31,7 +25,7 @@ export const CarWrapper = styled(GestureHandlerRootView)`
 export const WrapperMyCarButtonAnimated = styled(Animated.createAnimatedComponent(View))`
     align-items: center;
     justify-content: center;
-    
+
     width: 60px;
     height: 60px;
     border-radius: 30px;

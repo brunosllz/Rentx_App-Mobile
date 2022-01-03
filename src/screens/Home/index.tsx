@@ -3,7 +3,6 @@ import {
     Container,
     CarList,
     CarWrapper,
-    LoadWrapper,
     WrapperMyCarButtonAnimated,
     MyCarButtonAnimated,
     Icon
@@ -24,7 +23,7 @@ import { CarDTO } from '../../dtos/CarDTO';
 
 import { CarCard } from '../../components/CarCard';
 import { Header } from '../../components/Header';
-import { Load } from '../../components/Load';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 interface NavigationProps {
     navigate: (
@@ -100,9 +99,7 @@ export function Home() {
 
             {
                 loading ?
-                    <LoadWrapper>
-                        <Load />
-                    </LoadWrapper>
+                    <LoadAnimation />
                     :
                     <CarList
                         data={cars}

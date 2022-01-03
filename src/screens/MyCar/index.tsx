@@ -9,7 +9,6 @@ import {
     Appointments,
     AppointmentsTitle,
     AppointmentsAmount,
-    LoadWrapper,
     CarWrapper,
     CarFooter,
     CarFooterTittle,
@@ -26,9 +25,9 @@ import api from '../../service/api';
 
 import { BackButton } from '../../components/BackButton';
 import { CarCard } from '../../components/CarCard';
-import { Load } from '../../components/Load';
 
 import { AntDesign } from '@expo/vector-icons';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 interface CarProps {
     user_id: string;
@@ -89,9 +88,7 @@ export function MyCar() {
 
                 {
                     loading ?
-                        <LoadWrapper>
-                            <Load />
-                        </LoadWrapper>
+                        <LoadAnimation />
                         :
                         <FlatList
                             data={cars}

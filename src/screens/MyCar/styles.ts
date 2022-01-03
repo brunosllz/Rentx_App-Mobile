@@ -64,12 +64,6 @@ export const AppointmentsAmount = styled.Text`
     font-family: ${({ theme }) => theme.FONTS.secondary_regular};
 `;
 
-export const LoadWrapper = styled.View`
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-`;
-
 export const CarWrapper = styled.View`
     margin-bottom: 16px;
 `;
