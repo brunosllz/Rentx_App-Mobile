@@ -2,8 +2,8 @@ import React from 'react';
 import {
     Container,
     Header,
-    ImageSliderWrapper,
-    Content,
+    ImageSliderWrapperAnimated,
+    ContentAnimated,
     Details,
     Description,
     Brand,
@@ -17,6 +17,15 @@ import {
 } from './styles';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation, useRoute } from '@react-navigation/native';
+
+import {
+    useSharedValue,
+    useAnimatedScrollHandler,
+    useAnimatedStyle,
+    interpolate,
+    useDerivedValue,
+    Extrapolate
+} from 'react-native-reanimated'
 
 import { CarDTO } from '../../dtos/CarDTO';
 import { getAcessoryIcon } from '../../utils/getAccessoryIcon';
@@ -45,6 +54,25 @@ export function CarDetails() {
     const route = useRoute();
     const { car } = route.params as Params;
 
+    const translateY = useSharedValue(0);
+
+    const scrollHandler = useAnimatedScrollHandler({
+        onScroll: (event) => {
+            translateY.value = event.contentOffset.y;
+        }
+    });
+
+    const imageStyle = useAnimatedStyle(() => {
+        return {
+            height: interpolate(
+                translateY.value,
+                [0, 200],
+                [200, 90],
+                Extrapolate.CLAMP
+            )
+        }
+    })
+
     function handleScheduling() {
         navigation.navigate('Scheduling', { car });
     }
@@ -64,13 +92,17 @@ export function CarDetails() {
                 />
             </Header>
 
-            <ImageSliderWrapper>
+            <ImageSliderWrapperAnimated style={imageStyle}>
                 <ImageSlider
                     imageUrl={car.photos}
+                    translate={translateY}
                 />
-            </ImageSliderWrapper>
+            </ImageSliderWrapperAnimated>
 
-            <Content>
+            <ContentAnimated
+                onScroll={scrollHandler}
+                scrollEventThrottle={16}
+            >
                 <Details>
                     <Description>
                         <Brand>{car.brand}</Brand>
@@ -102,7 +134,7 @@ export function CarDetails() {
                 <About>
                     {car.about}
                 </About>
-            </Content>
+            </ContentAnimated>
 
             <Footer>
                 <Button

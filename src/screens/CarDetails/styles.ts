@@ -1,30 +1,30 @@
-import { getBottomSpace, getStatusBarHeight } from 'react-native-iphone-x-helper';
-import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
+import { ScrollView, View } from 'react-native';
+import { getBottomSpace, getStatusBarHeight } from 'react-native-iphone-x-helper';
+import Animated from 'react-native-reanimated';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
     flex: 1;
 `;
 
 export const Header = styled.View`
-    flex-direction: row;
-
-    align-items: center;
-    justify-content: space-between;
+    width: 100%;
+    align-items: flex-start;
 
     margin: 0 ${RFValue(24)}px;
     margin-top: ${getStatusBarHeight() + RFValue(20)}px;
     position: absolute;
+    z-index: 1;
 `;
 
-export const ImageSliderWrapper = styled.View`
-    margin-top: ${getStatusBarHeight() + RFValue(32)}px;
+export const ImageSliderWrapperAnimated = styled(Animated.createAnimatedComponent(View))`
+    margin-top: ${getStatusBarHeight() + RFValue(30)}px;
     margin-bottom: ${RFValue(10)}px;
 `;
 
-export const Content = styled.ScrollView.attrs({
+export const ContentAnimated = styled(Animated.createAnimatedComponent(ScrollView)).attrs({
     contentContainerStyle: {
-        paddingVertical: RFValue(2),
         alignItems: 'center'
     },
     showsVerticalScrollIndicator: false

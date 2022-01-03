@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
-import { Dimensions } from 'react-native';
+import { Dimensions, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import Animated from 'react-native-reanimated';
 
 interface ImageIndexProps {
    active: boolean;
@@ -27,6 +28,10 @@ export const IndexImgame = styled.View<ImageIndexProps>`
 
    margin-left: 8px;
    border-radius: 4px;
+`;
+
+export const WrapperScrollViewAnimated = styled(Animated.createAnimatedComponent(View))`
+   overflow: hidden;
 `;
 
 export const CarImageWrapper = styled.View`
