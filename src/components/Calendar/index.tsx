@@ -66,7 +66,6 @@ function Calendar({ markedDates, onDayPress }: CalendarProps) {
                     marginHorizontal: RFValue(-10)
                 }
             }}
-
             firstDay={1}
             minDate={new Date}
             markingType={'period'}

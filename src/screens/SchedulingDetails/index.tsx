@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import {
     Container,
     Header,
-    ImageSliderWrapper,
-    Content,
+    ImageSliderWrapperAnimated,
+    ContentAnimated,
     Details,
     Description,
     Brand,
@@ -41,6 +41,7 @@ import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { CarAccessory } from '../../components/CarAccessory';
 import { Button } from '../../components/Button';
+import { Extrapolate, interpolate, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
 interface Params {
     car: CarDTO;
@@ -60,6 +61,25 @@ export function SchedulingDetails() {
     const { car, dates } = route.params as Params;
 
     const rentTotal = Number(dates.length * car.rent.price);
+
+    const translateY = useSharedValue(0);
+
+    const scrollHandler = useAnimatedScrollHandler({
+        onScroll: (event) => {
+            translateY.value = event.contentOffset.y;
+        }
+    });
+
+    const imageStyle = useAnimatedStyle(() => {
+        return {
+            height: interpolate(
+                translateY.value,
+                [0, 200],
+                [200, 90],
+                Extrapolate.CLAMP
+            )
+        }
+    })
 
     async function handleSchedulingComplete() {
         setLoading(true);
@@ -113,13 +133,18 @@ export function SchedulingDetails() {
                 />
             </Header>
 
-            <ImageSliderWrapper>
+            <ImageSliderWrapperAnimated style={imageStyle}>
                 <ImageSlider
                     imageUrl={car.photos}
+                    translate={translateY}
                 />
-            </ImageSliderWrapper>
+            </ImageSliderWrapperAnimated>
 
-            <Content>
+
+            <ContentAnimated
+                onScroll={scrollHandler}
+                scrollEventThrottle={16}
+            >
                 <Details>
                     <Description>
                         <Brand>{car.brand}</Brand>
@@ -190,7 +215,7 @@ export function SchedulingDetails() {
 
                     <RentalPriceTotal>R$ {rentTotal}</RentalPriceTotal>
                 </RentalPrice>
-            </Content>
+            </ContentAnimated>
 
             <Footer>
                 <Button
