@@ -1,9 +1,8 @@
 import React from 'react';
 import {
     Container,
-    Dot
+    DotAnimated
 } from './styles';
-
 import { useTheme } from 'styled-components';
 
 import Animated, {
@@ -35,7 +34,7 @@ export function DotImageSlider({ index, activeDotIndex }: DotProps) {
 
     return (
         <Container>
-            <Dot style={[DotStyle]} />
+            <DotAnimated style={[DotStyle]} />
         </Container>
     )
 }

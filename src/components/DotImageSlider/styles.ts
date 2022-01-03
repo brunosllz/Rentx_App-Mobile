@@ -7,7 +7,7 @@ export const Container = styled.View`
    flex-direction: row;
 `;
 
-export const Dot = styled(Animated.createAnimatedComponent(View))`
+export const DotAnimated = styled(Animated.createAnimatedComponent(View))`
    width: 6px;
    height: 6px;
 

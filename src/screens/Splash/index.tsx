@@ -35,7 +35,7 @@ export function Splash() {
     const logoAnimation = useAnimatedStyle(() => {
         return {
             opacity: interpolate(splashAnimated.value,
-                [40, 50, 60, 65, 70],
+                [35, 40, 60, 65, 70],
                 [0, .3, 1, .3, 0]
             )
         }
@@ -64,7 +64,7 @@ export function Splash() {
     return (
         <Container>
             <Animated.View style={[brandAnimation, { position: 'absolute' }]}>
-                <BrandSvg width={80} height={50} />
+                <BrandSvg width={100} height={70} />
             </Animated.View>
 
             <Animated.View style={[logoAnimation, { position: 'absolute' }]}>

@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+    Container,
+    IndexImageWrapper,
+    CarImageWrapper,
+    CarImage
+} from './styles';
 import { Dimensions, ScrollView } from 'react-native';
 
 import Animated, {
@@ -9,13 +15,6 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { DotImageSlider } from '../DotImageSlider';
-
-import {
-    Container,
-    IndexImageWrapper,
-    CarImageWrapper,
-    CarImage
-} from './styles';
 
 interface Props {
     imageUrl: string[];
