@@ -5,13 +5,17 @@ import {
     Header,
     Title,
     Description,
+    Form,
     Footer,
     WrapperButtonSignin
 } from './styles';
+import { StatusBar } from 'expo-status-bar';
+import { Input } from '../../components/Input';
 
 export function Signin() {
     return (
         <Container>
+            <StatusBar style='dark' translucent={true} />
             <Header>
                 <Title>
                     Estamos{"\n"}quase lá.
@@ -21,6 +25,13 @@ export function Signin() {
                     Faça seu login para começar{"\n"}uma experiência incrível.
                 </Description>
             </Header>
+
+            <Form>
+                <Input
+                    iconName='mail'
+                />
+            </Form>
+
             <Footer>
                 <Button
                     title='Login'
