@@ -1,12 +1,11 @@
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
-import { RectButtonProps } from 'react-native-gesture-handler';
-import { useTheme } from 'styled-components';
-
 import {
     Container,
     Title
 } from './styles';
+import { RectButtonProps } from 'react-native-gesture-handler';
+
+import { Load } from '../Load';
 
 interface Props extends RectButtonProps {
     title: string;
@@ -22,7 +21,6 @@ export function Button({
     loading = false,
     ...rest
 }: Props) {
-    const theme = useTheme();
 
     return (
         <Container
@@ -33,10 +31,7 @@ export function Button({
         >
             {
                 loading ?
-                    <ActivityIndicator
-                        size={24}
-                        color={theme.COLORS.background_secondary}
-                    />
+                    <Load />
                     :
                     <Title>
                         {title}
