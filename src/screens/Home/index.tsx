@@ -24,6 +24,7 @@ import { CarDTO } from '../../dtos/CarDTO';
 import { CarCard } from '../../components/CarCard';
 import { Header } from '../../components/Header';
 import { LoadAnimation } from '../../components/LoadAnimation';
+import { Alert } from 'react-native';
 
 interface NavigationProps {
     navigate: (
@@ -81,10 +82,12 @@ export function Home() {
             try {
                 const response = await api.get('/cars');
                 setcars(response.data);
-            } catch (error) {
-                console.log(error);
-            } finally {
+
                 setloading(false);
+            } catch (error) {
+                Alert.alert("Não foi possível carregar os carrros.");
+
+                console.log(error);
             }
         }
 

@@ -15,7 +15,7 @@ import {
     CarFooterPeriod,
     CarFooterDate
 } from './styles';
-import { FlatList } from 'react-native';
+import { Alert, FlatList } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
@@ -52,10 +52,11 @@ export function MyCar() {
             try {
                 const response = await api.get('/schedules_byuser?user_id=1');
                 setCars(response.data);
-            } catch (error) {
-                console.log(error)
-            } finally {
+
                 setLoading(false);
+            } catch (error) {
+                Alert.alert('Não foi possível carregar os seus carros.');
+                console.log(error);
             }
         }
 
