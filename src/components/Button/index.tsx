@@ -11,7 +11,7 @@ interface Props extends RectButtonProps {
     title: string;
     enable?: boolean;
     loading?: boolean;
-    color?: 'green' | 'red';
+    color?: 'green' | 'red' | 'white';
 }
 
 export function Button({
@@ -33,7 +33,7 @@ export function Button({
                 loading ?
                     <Load />
                     :
-                    <Title>
+                    <Title color={color}>
                         {title}
                     </Title>
             }
