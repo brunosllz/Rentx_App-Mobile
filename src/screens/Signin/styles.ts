@@ -1,8 +1,8 @@
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
-import { RFValue } from 'react-native-responsive-fontsize';
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
    flex: 1;
     background-color: ${({ theme }) => theme.COLORS.background_primary};
 
@@ -12,7 +12,7 @@ export const Container = styled.View`
 export const Header = styled.View`
     width: 100%;
 
-    margin-top: ${getStatusBarHeight() + RFValue(115)}px;
+    margin-top: ${getStatusBarHeight() + RFPercentage(15)}px;
 `;
 
 export const Title = styled.Text`
