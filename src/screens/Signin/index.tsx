@@ -6,11 +6,13 @@ import {
     Title,
     Description,
     Form,
+    WrapperInput,
     Footer,
     WrapperButtonSignin
 } from './styles';
 import { StatusBar } from 'expo-status-bar';
 import { Input } from '../../components/Input';
+import { PasswdInput } from '../../components/PasswdInput';
 
 export function Signin() {
     return (
@@ -27,8 +29,19 @@ export function Signin() {
             </Header>
 
             <Form>
-                <Input
-                    iconName='mail'
+                <WrapperInput>
+                    <Input
+                        iconName='mail'
+                        placeholder='E-mail'
+                        keyboardType='email-address'
+                        autoCorrect={false}
+                        autoCapitalize='none'
+                    />
+                </WrapperInput>
+
+                <PasswdInput
+                    iconName='lock'
+                    placeholder='Senha'
                 />
             </Form>
 

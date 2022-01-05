@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { BorderlessButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
     flex-direction: row;
@@ -31,5 +32,21 @@ export const InputText = styled.TextInput`
     font-family: ${({ theme }) => theme.FONTS.secondary_regular};
     font-size: ${RFValue(15)}px;
 
-    padding: 0 23px;
+    padding: 0 15px 0 23px;
+`;
+
+export const WhapperIconPasswd = styled.View`
+    background-color: ${({ theme }) => theme.COLORS.background_secondary};
+    
+    align-items: center;
+    justify-content: center;
+`;
+
+export const ChangePasswdButton = styled(BorderlessButton)`
+    background-color: transparent;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 14px;
 `;

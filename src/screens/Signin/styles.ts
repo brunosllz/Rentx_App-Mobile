@@ -34,6 +34,10 @@ export const Form = styled.View`
     margin: ${RFValue(64)}px 0;
 `;
 
+export const WrapperInput = styled.View`
+    margin-bottom: ${RFValue(8)}px;
+`;
+
 export const Footer = styled.View`
     width: 100%;
 `;
