@@ -1,11 +1,20 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { BorderlessButton } from 'react-native-gesture-handler';
 
-export const Container = styled.View`
+interface ContainerProps {
+    isFocused: boolean;
+}
+
+export const Container = styled.View<ContainerProps>`
     flex-direction: row;
     width: 100%;
+
+    ${({ isFocused, theme }) => isFocused && css`
+        border-bottom-width: 2px;
+        border-bottom-color: ${theme.COLORS.primary};
+    `}
 `;
 
 export const WrapperIcon = styled.View`
@@ -18,10 +27,6 @@ export const WrapperIcon = styled.View`
     align-items: center;
 
     margin-right: 2px;
-`;
-
-export const Icon = styled(Feather)`
-    color: ${({ theme }) => theme.COLORS.text}
 `;
 
 export const InputText = styled.TextInput`

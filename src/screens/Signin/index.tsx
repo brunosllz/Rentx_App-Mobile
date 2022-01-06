@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../../components/Button';
 import {
     Container,
@@ -21,6 +21,9 @@ import { Input } from '../../components/Input';
 import { PasswdInput } from '../../components/PasswdInput';
 
 export function Signin() {
+    const [email, setEmail] = useState('');
+    const [passwd, setPasswd] = useState('');
+
     return (
         <KeyboardAvoidingView behavior='position' enabled>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -44,6 +47,8 @@ export function Signin() {
                                 keyboardType='email-address'
                                 autoCorrect={false}
                                 autoCapitalize='none'
+                                onChangeText={setEmail}
+                                value={email}
                             />
                         </WrapperInput>
 
@@ -51,6 +56,8 @@ export function Signin() {
                             iconName='lock'
                             placeholder='Senha'
                             autoCorrect={false}
+                            onChangeText={setPasswd}
+                            value={passwd}
                         />
                     </Form>
 

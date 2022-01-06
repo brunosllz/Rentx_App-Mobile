@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
     Container,
     WrapperIcon,
-    Icon,
     InputText,
     WhapperIconPasswd,
     ChangePasswdButton
@@ -15,27 +14,45 @@ import { useTheme } from 'styled-components';
 
 interface Props extends TextInputProps {
     iconName: React.ComponentProps<typeof Feather>['name'];
+    value?: string;
 }
 
-export function PasswdInput({ iconName, ...rest }: Props) {
-    const theme = useTheme();
+export function PasswdInput({ iconName, value, ...rest }: Props) {
     const [hidePasswd, setHidePasswd] = useState(true);
+    const [isFocused, setIsFocused] = useState(false);
+    const [isFilled, setIsFilled] = useState(false);
+
+    const theme = useTheme();
 
     function handleHidePasswd() {
         setHidePasswd(!hidePasswd);
     }
 
+    function handleInputFocus() {
+        setIsFocused(true);
+    }
+
+    function handleInputBlur() {
+        setIsFocused(false);
+        setIsFilled(!!value);
+    }
+
     return (
-        <Container>
+        <Container
+            isFocused={isFocused}
+        >
             <WrapperIcon>
-                <Icon
+                <Feather
                     name={iconName}
                     size={RFValue(24)}
+                    color={(isFocused || isFilled) ? theme.COLORS.primary : theme.COLORS.text}
                 />
             </WrapperIcon>
 
             <InputText
                 secureTextEntry={hidePasswd}
+                onFocus={handleInputFocus}
+                onBlur={handleInputBlur}
                 {...rest}
             />
 
