@@ -38,10 +38,10 @@ export function PasswdInput({ iconName, value, ...rest }: Props) {
     }
 
     return (
-        <Container
-            isFocused={isFocused}
-        >
-            <WrapperIcon>
+        <Container>
+            <WrapperIcon
+                isFocused={isFocused}
+            >
                 <Feather
                     name={iconName}
                     size={RFValue(24)}
@@ -53,10 +53,13 @@ export function PasswdInput({ iconName, value, ...rest }: Props) {
                 secureTextEntry={hidePasswd}
                 onFocus={handleInputFocus}
                 onBlur={handleInputBlur}
+                isFocused={isFocused}
                 {...rest}
             />
 
-            <WhapperIconPasswd>
+            <WhapperIconPasswd
+                isFocused={isFocused}
+            >
                 <ChangePasswdButton onPress={handleHidePasswd}>
                     <Feather
                         name={hidePasswd ? 'eye' : 'eye-off'}

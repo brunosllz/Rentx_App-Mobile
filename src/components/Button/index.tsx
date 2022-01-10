@@ -9,7 +9,6 @@ import { Load } from '../Load';
 
 interface Props extends RectButtonProps {
     title: string;
-    enable?: boolean;
     loading?: boolean;
     color?: 'green' | 'red' | 'white';
 }
@@ -17,16 +16,16 @@ interface Props extends RectButtonProps {
 export function Button({
     title,
     color = 'red',
-    enable = true,
+    enabled = true,
     loading = false,
     ...rest
 }: Props) {
 
     return (
         <Container
-            enabled={enable}
+            enabled={enabled}
             color={color}
-            style={{ opacity: (enable) ? 1 : .5 }}
+            style={{ opacity: (enabled) ? 1 : .5 }}
             {...rest}
         >
             {
