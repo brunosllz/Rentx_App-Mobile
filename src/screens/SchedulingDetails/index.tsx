@@ -221,7 +221,7 @@ export function SchedulingDetails() {
                 <Button
                     title='Alugar agora'
                     color='green'
-                    enable={!loading}
+                    enabled={!loading}
                     loading={loading}
                     onPress={handleSchedulingComplete}
                 />
