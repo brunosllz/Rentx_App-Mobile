@@ -8,7 +8,7 @@ import {
     Form,
     WrapperInput,
     Footer,
-    WrapperButtonSignin
+    WrapperButtonSignup
 } from './styles';
 import {
     KeyboardAvoidingView,
@@ -17,13 +17,19 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import * as yup from 'yup';
+import { useNavigation } from '@react-navigation/native';
 
 import { Input } from '../../components/Input';
 import { PasswdInput } from '../../components/PasswdInput';
 
+interface NavigationProps {
+    navigate: (screen: string) => void
+}
+
 export function Signin() {
     const [email, setEmail] = useState('');
     const [passwd, setPasswd] = useState('');
+    const navigation = useNavigation<NavigationProps>();
 
     async function handleSignin() {
         try {
@@ -40,6 +46,10 @@ export function Signin() {
                 error
             }
         }
+    }
+
+    function handleNewAccount() {
+        navigation.navigate('SignupFirstStep')
     }
 
     return (
@@ -83,12 +93,13 @@ export function Signin() {
                         <Button
                             title='Login'
                         />
-                        <WrapperButtonSignin>
+                        <WrapperButtonSignup>
                             <Button
+                                onPress={handleNewAccount}
                                 title='Criar conta gratuita'
                                 color='white'
                             />
-                        </WrapperButtonSignin>
+                        </WrapperButtonSignup>
                     </Footer>
                 </Container>
             </TouchableWithoutFeedback>

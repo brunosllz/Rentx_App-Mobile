@@ -41,6 +41,6 @@ export const Footer = styled.View`
     width: 100%;
 `;
 
-export const WrapperButtonSignin = styled.View`
+export const WrapperButtonSignup = styled.View`
     margin-top: ${RFValue(8)}px;
 `;
