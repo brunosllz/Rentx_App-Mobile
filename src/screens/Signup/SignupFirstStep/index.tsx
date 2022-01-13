@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
     Container,
     Header,
+    Steps,
     Content,
     Title,
     Description,
@@ -10,13 +11,19 @@ import {
     WrapperInput,
     Footer
 } from './styles';
+import {
+    Keyboard,
+    KeyboardAvoidingView
+} from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import { useTheme } from 'styled-components';
+import { StatusBar } from 'expo-status-bar';
 
 import { BackButton } from '../../../components/BackButton';
 import { Button } from '../../../components/Button';
 import { Input } from '../../../components/Input';
-import { Keyboard, KeyboardAvoidingView } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { Bullet } from '../../../components/Bullet';
 
 interface NavigationProps {
     navigate: (
@@ -30,6 +37,7 @@ export function SignupFirstStep() {
     const [email, setEmail] = useState('');
     const [document, setDocument] = useState('');
     const navigation = useNavigation<NavigationProps>()
+    const theme = useTheme()
 
     function handleBack() {
         navigation.goBack()
@@ -40,17 +48,26 @@ export function SignupFirstStep() {
     }
 
     return (
-        <KeyboardAvoidingView behavior='position' enabled>
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Container>
+            <StatusBar style='dark' backgroundColor={theme.COLORS.background_primary} />
+            <Header>
+                <BackButton
+                    onPress={handleBack}
+                    color='gray'
+                />
 
-                <Container>
-                    <Header>
-                        <BackButton
-                            onPress={handleBack}
-                            color='gray'
-                        />
-                    </Header>
+                <Steps>
+                    <Bullet
+                        active
+                    />
+                    <Bullet
+                        active={false}
+                    />
+                </Steps>
+            </Header>
 
+            <KeyboardAvoidingView behavior='position' enabled>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <Content>
                         <Title>
                             Crie sua{'\n'}conta
@@ -91,6 +108,7 @@ export function SignupFirstStep() {
                             autoCorrect={false}
                             onChangeText={setDocument}
                             value={document}
+                            keyboardType='numeric'
                         />
                     </Form>
 
@@ -101,8 +119,8 @@ export function SignupFirstStep() {
                             onPress={handleNextstep}
                         />
                     </Footer>
-                </Container>
-            </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
+        </Container>
     );
 }

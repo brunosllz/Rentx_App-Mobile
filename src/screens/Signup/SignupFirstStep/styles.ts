@@ -3,14 +3,26 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
+   background-color: ${({ theme }) => theme.COLORS.background_primary};
    padding: 0 ${RFValue(24)}px;
 `;
 
 export const Header = styled.View`
    width: 100%;
+   background-color: ${({ theme }) => theme.COLORS.background_primary};
    align-items: flex-start;
 
-   margin-top: ${getStatusBarHeight() + RFValue(20)}px; 
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+
+   padding: ${RFValue(20)}px 0;
+   margin-top: ${getStatusBarHeight()}px;
+   z-index : 1;
+`;
+
+export const Steps = styled.View`
+   flex-direction: row;
 `;
 
 export const Content = styled.View`
