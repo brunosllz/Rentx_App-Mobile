@@ -12,13 +12,17 @@ import {
     Footer
 } from './styles';
 import {
+    Alert,
     Keyboard,
     KeyboardAvoidingView
 } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import * as yup from 'yup';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 import { StatusBar } from 'expo-status-bar';
+
+import { UserDTO } from '../../../dtos/UserDTO';
 
 import { BackButton } from '../../../components/BackButton';
 import { Button } from '../../../components/Button';
@@ -27,7 +31,10 @@ import { Bullet } from '../../../components/Bullet';
 
 interface NavigationProps {
     navigate: (
-        screen: string
+        screen: string,
+        UserObject: {
+            user: UserDTO
+        }
     ) => void;
     goBack: () => void;
 }
@@ -35,7 +42,7 @@ interface NavigationProps {
 export function SignupFirstStep() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [document, setDocument] = useState('');
+    const [driverLicense, setDriverLicense] = useState('');
     const navigation = useNavigation<NavigationProps>()
     const theme = useTheme()
 
@@ -43,8 +50,24 @@ export function SignupFirstStep() {
         navigation.goBack()
     }
 
-    function handleNextstep() {
-        navigation.navigate('SignupSecoundStep')
+    async function handleNextstep() {
+        try {
+            const schema = yup.object({
+                driverLicense: yup.string().required('CNH é obrigatório'),
+                email: yup.string().email('Email inválido').required('Email é obrigatório'),
+                name: yup.string().required('Nome é obrigatório')
+            })
+
+            const data = { name, email, driverLicense };
+            await schema.validate(data);
+
+            navigation.navigate('SignupSecoundStep', { user: data })
+        } catch (error) {
+            if (error instanceof yup.ValidationError) {
+                Alert.alert('Ops', error.message);
+            }
+
+        }
     }
 
     return (
@@ -97,6 +120,7 @@ export function SignupFirstStep() {
                                 iconName='mail'
                                 placeholder='E-mail'
                                 autoCorrect={false}
+                                autoCapitalize='none'
                                 onChangeText={setEmail}
                                 value={email}
                             />
@@ -106,8 +130,8 @@ export function SignupFirstStep() {
                             iconName='credit-card'
                             placeholder='CNH'
                             autoCorrect={false}
-                            onChangeText={setDocument}
-                            value={document}
+                            onChangeText={setDriverLicense}
+                            value={driverLicense}
                             keyboardType='numeric'
                         />
                     </Form>

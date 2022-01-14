@@ -12,17 +12,20 @@ import {
     Footer
 } from './styles';
 import {
+    Alert,
     Keyboard,
     KeyboardAvoidingView
 } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 import { StatusBar } from 'expo-status-bar';
+import * as yup from 'yup';
+
+import { UserDTO } from '../../../dtos/UserDTO';
 
 import { BackButton } from '../../../components/BackButton';
 import { Button } from '../../../components/Button';
-import { Input } from '../../../components/Input';
 import { Bullet } from '../../../components/Bullet';
 import { PasswdInput } from '../../../components/PasswdInput';
 
@@ -33,18 +36,45 @@ interface NavigationProps {
     goBack: () => void;
 }
 
+interface Params {
+    user: UserDTO;
+}
+
 export function SignupSecoundStep() {
     const [passwd, setPasswd] = useState('');
     const [confirmPasswd, setCorfirmPasswd] = useState('');
     const navigation = useNavigation<NavigationProps>()
     const theme = useTheme()
 
+    const route = useRoute()
+    const { user } = route.params as Params
+    console.log(user);
+
     function handleBack() {
         navigation.goBack()
     }
 
-    function handleNextstep() {
-        navigation.navigate('SignupSecoundStep')
+    async function handleRegister() {
+        try {
+            const schema = yup.object({
+                passwd: yup.string().required('A senha é obrigatória'),
+                confirmPasswd: yup.string().required('Confirme sua senha')
+            })
+
+            const data = { passwd, confirmPasswd };
+            await schema.validate(data);
+
+            if (passwd !== confirmPasswd) {
+                return Alert.alert('Ops', 'As senhas devem ser iguais')
+            }
+
+            // navigation.navigate('SignupSecoundStep')
+        } catch (error) {
+            if (error instanceof yup.ValidationError) {
+                Alert.alert('Ops', error.message);
+            }
+        }
+
     }
 
     return (
@@ -105,7 +135,8 @@ export function SignupSecoundStep() {
                         <Button
                             title='Próximo'
                             color='red'
-                            onPress={() => { }}
+                            enabled={!!passwd}
+                            onPress={handleRegister}
                         />
                     </Footer>
                 </TouchableWithoutFeedback>
