@@ -52,11 +52,23 @@ interface RentalPeriod {
     end: string;
 }
 
+interface NavigationProps {
+    navigate: (
+        screen: string,
+        ConfirmScreen: {
+            title: string,
+            message: string,
+            nextScreen: string
+        }
+    ) => void;
+    goBack: () => void;
+}
+
 export function SchedulingDetails() {
     const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>({} as RentalPeriod)
     const [loading, setLoading] = useState(false);
     const theme = useTheme();
-    const navigation = useNavigation<any>()
+    const navigation = useNavigation<NavigationProps>()
     const route = useRoute();
     const { car, dates } = route.params as Params;
 
@@ -108,7 +120,11 @@ export function SchedulingDetails() {
             console.log(error);
         }
 
-        navigation.navigate({ name: 'SchedulingComplete' });
+        navigation.navigate('Corfimation', {
+            title: 'Carro alugado!',
+            message: 'Agora você só precisar ir\naté a concessionário da RENTX',
+            nextScreen: 'Home'
+        });
     }
 
     function handleBack() {

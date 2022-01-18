@@ -31,7 +31,11 @@ import { PasswdInput } from '../../../components/PasswdInput';
 
 interface NavigationProps {
     navigate: (
-        screen: string
+        screen: string,
+        ConfirmScreen: {
+            title: string,
+            nextScreen: string
+        }
     ) => void;
     goBack: () => void;
 }
@@ -43,15 +47,14 @@ interface Params {
 export function SignupSecoundStep() {
     const [passwd, setPasswd] = useState('');
     const [confirmPasswd, setCorfirmPasswd] = useState('');
-    const navigation = useNavigation<NavigationProps>()
-    const theme = useTheme()
+    const navigation = useNavigation<NavigationProps>();
+    const theme = useTheme();
 
-    const route = useRoute()
+    const route = useRoute();
     const { user } = route.params as Params
-    console.log(user);
 
     function handleBack() {
-        navigation.goBack()
+        navigation.goBack();
     }
 
     async function handleRegister() {
@@ -65,16 +68,18 @@ export function SignupSecoundStep() {
             await schema.validate(data);
 
             if (passwd !== confirmPasswd) {
-                return Alert.alert('Ops', 'As senhas devem ser iguais')
+                return Alert.alert('Ops', 'As senhas devem ser iguais');
             }
 
-            // navigation.navigate('SignupSecoundStep')
+            navigation.navigate('Corfimation', {
+                title: 'Conta criada!',
+                nextScreen: 'Signin'
+            });
         } catch (error) {
             if (error instanceof yup.ValidationError) {
                 Alert.alert('Ops', error.message);
             }
         }
-
     }
 
     return (
@@ -116,7 +121,6 @@ export function SignupSecoundStep() {
                             <PasswdInput
                                 iconName='lock'
                                 placeholder='Senha'
-                                autoCorrect={false}
                                 onChangeText={setPasswd}
                                 value={passwd}
                             />
@@ -125,7 +129,6 @@ export function SignupSecoundStep() {
                         <PasswdInput
                             iconName='lock'
                             placeholder='Repetir senha'
-                            autoCorrect={false}
                             onChangeText={setCorfirmPasswd}
                             value={confirmPasswd}
                         />
