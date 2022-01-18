@@ -51,7 +51,7 @@ export function SignupSecoundStep() {
     const theme = useTheme();
 
     const route = useRoute();
-    const { user } = route.params as Params
+    const { user } = route.params as Params;
 
     function handleBack() {
         navigation.goBack();

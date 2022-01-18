@@ -66,7 +66,6 @@ export function SignupFirstStep() {
             if (error instanceof yup.ValidationError) {
                 Alert.alert('Ops', error.message);
             }
-
         }
     }
 

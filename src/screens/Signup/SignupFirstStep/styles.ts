@@ -9,7 +9,7 @@ export const Container = styled.View`
 
 export const Header = styled.View`
    width: 100%;
-   background-color: ${({ theme }) => theme.COLORS.background_primary};
+   background-color: red;
    align-items: flex-start;
 
    flex-direction: row;
@@ -18,7 +18,6 @@ export const Header = styled.View`
 
    padding: ${RFValue(20)}px 0;
    margin-top: ${getStatusBarHeight()}px;
-   z-index : 1;
 `;
 
 export const Steps = styled.View`

@@ -18,7 +18,6 @@ export const Header = styled.View`
 
    padding: ${RFValue(20)}px 0;
    margin-top: ${getStatusBarHeight()}px;
-   z-index : 1;
 `;
 
 export const Steps = styled.View`
