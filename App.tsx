@@ -16,6 +16,7 @@ import {
 } from '@expo-google-fonts/inter';
 
 import theme from './src/global/styles/theme';
+import { AuthProvider } from './src/hook/auth';
 
 import { Routes } from './src/routes';
 
@@ -35,7 +36,9 @@ export default function App() {
   LogBox.ignoreLogs(['Warning', 'Console']);
   return (
     <ThemeProvider theme={theme}>
-      <Routes />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </ThemeProvider>
   );
 }

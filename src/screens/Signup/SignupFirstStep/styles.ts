@@ -9,7 +9,7 @@ export const Container = styled.View`
 
 export const Header = styled.View`
    width: 100%;
-   background-color: red;
+   background-color: ${({ theme }) => theme.COLORS.background_primary};
    align-items: flex-start;
 
    flex-direction: row;

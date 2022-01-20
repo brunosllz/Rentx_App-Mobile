@@ -28,6 +28,7 @@ import { BackButton } from '../../../components/BackButton';
 import { Button } from '../../../components/Button';
 import { Bullet } from '../../../components/Bullet';
 import { PasswdInput } from '../../../components/PasswdInput';
+import api from '../../../service/api';
 
 interface NavigationProps {
     navigate: (
@@ -45,8 +46,8 @@ interface Params {
 }
 
 export function SignupSecoundStep() {
-    const [passwd, setPasswd] = useState('');
-    const [confirmPasswd, setCorfirmPasswd] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setCorfirmPassword] = useState('');
     const navigation = useNavigation<NavigationProps>();
     const theme = useTheme();
 
@@ -60,20 +61,30 @@ export function SignupSecoundStep() {
     async function handleRegister() {
         try {
             const schema = yup.object({
-                passwd: yup.string().required('A senha é obrigatória'),
-                confirmPasswd: yup.string().required('Confirme sua senha')
+                password: yup.string().required('A senha é obrigatória'),
+                confirmPassword: yup.string().required('Confirme sua senha')
             })
 
-            const data = { passwd, confirmPasswd };
+            const data = { password, confirmPassword };
             await schema.validate(data);
 
-            if (passwd !== confirmPasswd) {
+            if (password !== confirmPassword) {
                 return Alert.alert('Ops', 'As senhas devem ser iguais');
             }
 
-            navigation.navigate('Corfimation', {
-                title: 'Conta criada!',
-                nextScreen: 'Signin'
+            await api.post('/users', {
+                name: user.name,
+                email: user.email,
+                password,
+                driver_license: user.driverLicense
+            }).then(() => {
+                navigation.navigate('Corfimation', {
+                    title: 'Conta criada!',
+                    nextScreen: 'Signin'
+                });
+            }).catch((error) => {
+                Alert.alert('Ops', 'Não foi possível realizar o cadastro!')
+                console.log(error);
             });
         } catch (error) {
             if (error instanceof yup.ValidationError) {
@@ -121,16 +132,16 @@ export function SignupSecoundStep() {
                             <PasswdInput
                                 iconName='lock'
                                 placeholder='Senha'
-                                onChangeText={setPasswd}
-                                value={passwd}
+                                onChangeText={setPassword}
+                                value={password}
                             />
                         </WrapperInput>
 
                         <PasswdInput
                             iconName='lock'
                             placeholder='Repetir senha'
-                            onChangeText={setCorfirmPasswd}
-                            value={confirmPasswd}
+                            onChangeText={setCorfirmPassword}
+                            value={confirmPassword}
                         />
                     </Form>
 
@@ -138,7 +149,7 @@ export function SignupSecoundStep() {
                         <Button
                             title='Próximo'
                             color='red'
-                            enabled={!!passwd}
+                            enabled={!!password}
                             onPress={handleRegister}
                         />
                     </Footer>
