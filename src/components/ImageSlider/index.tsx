@@ -21,11 +21,14 @@ import Animated, {
 import { DotImageSlider } from '../DotImageSlider';
 
 interface Props {
-    imageUrl: string[];
+    photos: {
+        id: string,
+        photo: string
+    }[];
     translate?: Animated.SharedValue<number>
 }
 
-export function ImageSlider({ imageUrl, translate }: Props) {
+export function ImageSlider({ photos, translate }: Props) {
     const { width: SCREEN_WIDTH } = Dimensions.get('window');
     const translateX = useSharedValue(0);
 
@@ -68,9 +71,9 @@ export function ImageSlider({ imageUrl, translate }: Props) {
         <Container>
             <IndexImageWrapper>
                 {
-                    imageUrl.map((_, index) => (
+                    photos.map((item, index) => (
                         <DotImageSlider
-                            key={index.toString()}
+                            key={item.id}
                             index={index}
                             activeDotIndex={activeIndex}
                         />
@@ -88,11 +91,11 @@ export function ImageSlider({ imageUrl, translate }: Props) {
                     showsHorizontalScrollIndicator={false}
                 >
                     {
-                        imageUrl.map((image, index) => (
+                        photos.map(item => (
                             <CarImageWrapper>
                                 <CarImage
-                                    key={index.toString()}
-                                    source={{ uri: image }}
+                                    key={item.id}
+                                    source={{ uri: item.photo }}
                                 />
                             </CarImageWrapper>
                         ))

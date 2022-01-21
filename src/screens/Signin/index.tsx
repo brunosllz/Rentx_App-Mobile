@@ -43,13 +43,13 @@ export function Signin() {
 
             await schema.validate({ email, password });
 
-            signIn({ email, password })
+            signIn({ email, password });
         } catch (error) {
             if (error instanceof yup.ValidationError) {
                 error.message
-            } else {
-                error
             }
+
+            console.log(error);
         }
     }
 

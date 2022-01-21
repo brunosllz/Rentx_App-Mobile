@@ -90,6 +90,8 @@ export function SignupSecoundStep() {
             if (error instanceof yup.ValidationError) {
                 Alert.alert('Ops', error.message);
             }
+
+            console.log(error);
         }
     }
 

@@ -72,7 +72,7 @@ export function SchedulingDetails() {
     const route = useRoute();
     const { car, dates } = route.params as Params;
 
-    const rentTotal = Number(dates.length * car.rent.price);
+    const rentTotal = Number(dates.length * car.price);
 
     const translateY = useSharedValue(0);
 
@@ -151,11 +151,10 @@ export function SchedulingDetails() {
 
             <ImageSliderWrapperAnimated style={imageStyle}>
                 <ImageSlider
-                    imageUrl={car.photos}
+                    photos={car.photos}
                     translate={translateY}
                 />
             </ImageSliderWrapperAnimated>
-
 
             <ContentAnimated
                 onScroll={scrollHandler}
@@ -169,10 +168,10 @@ export function SchedulingDetails() {
 
                     <Rent>
                         <Period>
-                            {car.rent.period}
+                            {car.period}
                         </Period>
                         <Price>
-                            R$ {car.rent.price}
+                            R$ {car.price}
                         </Price>
                     </Rent>
                 </Details>
@@ -221,9 +220,9 @@ export function SchedulingDetails() {
                         <RentalPriceQuota>
                             {
                                 dates.length > 1 ?
-                                    `R$ ${car.rent.price} x${dates.length} diárias`
+                                    `R$ ${car.price} x${dates.length} diárias`
                                     :
-                                    `R$ ${car.rent.price} x${dates.length} diária`
+                                    `R$ ${car.price} x${dates.length} diária`
 
                             }
                         </RentalPriceQuota>
