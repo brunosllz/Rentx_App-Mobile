@@ -50,6 +50,8 @@ export function PasswdInput({ iconName, value, ...rest }: Props) {
             </WrapperIcon>
 
             <InputText
+                autoCapitalize='none'
+                autoCorrect={false}
                 secureTextEntry={hidePasswd}
                 onFocus={handleInputFocus}
                 onBlur={handleInputBlur}

@@ -23,7 +23,6 @@ import {
     useAnimatedScrollHandler,
     useAnimatedStyle,
     interpolate,
-    useDerivedValue,
     Extrapolate
 } from 'react-native-reanimated'
 
@@ -94,7 +93,7 @@ export function CarDetails() {
 
             <ImageSliderWrapperAnimated style={imageStyle}>
                 <ImageSlider
-                    imageUrl={car.photos}
+                    photos={car.photos}
                     translate={translateY}
                 />
             </ImageSliderWrapperAnimated>
@@ -111,10 +110,10 @@ export function CarDetails() {
 
                     <Rent>
                         <Period>
-                            {car.rent.period}
+                            {car.period}
                         </Period>
                         <Price>
-                            R$ {car.rent.price}
+                            R$ {car.price}
                         </Price>
                     </Rent>
                 </Details>
@@ -123,7 +122,7 @@ export function CarDetails() {
                     {
                         car.accessories.map(acessory => (
                             <CarAccessory
-                                key={acessory.type}
+                                key={acessory.id}
                                 name={acessory.name}
                                 icon={getAcessoryIcon(acessory.type)}
                             />

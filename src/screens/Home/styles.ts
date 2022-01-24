@@ -21,31 +21,3 @@ export const CarWrapper = styled(GestureHandlerRootView)`
     width: 100%;
     margin-bottom: 16px;
 `;
-
-export const WrapperMyCarButtonAnimated = styled(Animated.createAnimatedComponent(View))`
-    align-items: center;
-    justify-content: center;
-
-    width: 60px;
-    height: 60px;
-    border-radius: 30px;
-
-    position: absolute;
-    bottom: ${RFValue(13)}px;
-    right: ${RFValue(20)}px;
-`;
-
-export const MyCarButtonAnimated = styled(Animated.createAnimatedComponent(RectButton))`
-    background-color: ${({ theme }) => theme.COLORS.primary};
-
-    align-items: center;
-    justify-content: center;
-
-    width: 60px;
-    height: 60px;
-    border-radius: 30px;
-`;
-
-export const Icon = styled(Ionicons)`
-    color: ${({ theme }) => theme.COLORS.background_secondary};
-`;

@@ -12,12 +12,12 @@ export const Container = styled(BorderlessButton)`
     justify-content: center;
 `;
 
-export const Icon = styled(MaterialIcons)<ColorsProps>`
+export const Icon = styled(MaterialIcons) <ColorsProps>`
     font-size: ${RFValue(24)}px;
-    color: ${({color, theme}) =>
-        color === 'gray' ? 
-        theme.COLORS.text
-        :
-        theme.COLORS.background_secondary
+    color: ${({ color, theme }) =>
+        color === 'gray' ?
+            theme.COLORS.text
+            :
+            theme.COLORS.background_secondary
     };
 `;

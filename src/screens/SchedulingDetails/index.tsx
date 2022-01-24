@@ -52,15 +52,27 @@ interface RentalPeriod {
     end: string;
 }
 
+interface NavigationProps {
+    navigate: (
+        screen: string,
+        ConfirmScreen: {
+            title: string,
+            message: string,
+            nextScreen: string
+        }
+    ) => void;
+    goBack: () => void;
+}
+
 export function SchedulingDetails() {
     const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>({} as RentalPeriod)
     const [loading, setLoading] = useState(false);
     const theme = useTheme();
-    const navigation = useNavigation<any>()
+    const navigation = useNavigation<NavigationProps>()
     const route = useRoute();
     const { car, dates } = route.params as Params;
 
-    const rentTotal = Number(dates.length * car.rent.price);
+    const rentTotal = Number(dates.length * car.price);
 
     const translateY = useSharedValue(0);
 
@@ -108,7 +120,11 @@ export function SchedulingDetails() {
             console.log(error);
         }
 
-        navigation.navigate({ name: 'SchedulingComplete' });
+        navigation.navigate('Corfimation', {
+            title: 'Carro alugado!',
+            message: 'Agora você só precisar ir\naté a concessionário da RENTX',
+            nextScreen: 'Home'
+        });
     }
 
     function handleBack() {
@@ -135,11 +151,10 @@ export function SchedulingDetails() {
 
             <ImageSliderWrapperAnimated style={imageStyle}>
                 <ImageSlider
-                    imageUrl={car.photos}
+                    photos={car.photos}
                     translate={translateY}
                 />
             </ImageSliderWrapperAnimated>
-
 
             <ContentAnimated
                 onScroll={scrollHandler}
@@ -153,10 +168,10 @@ export function SchedulingDetails() {
 
                     <Rent>
                         <Period>
-                            {car.rent.period}
+                            {car.period}
                         </Period>
                         <Price>
-                            R$ {car.rent.price}
+                            R$ {car.price}
                         </Price>
                     </Rent>
                 </Details>
@@ -205,9 +220,9 @@ export function SchedulingDetails() {
                         <RentalPriceQuota>
                             {
                                 dates.length > 1 ?
-                                    `R$ ${car.rent.price} x${dates.length} diárias`
+                                    `R$ ${car.price} x${dates.length} diárias`
                                     :
-                                    `R$ ${car.rent.price} x${dates.length} diária`
+                                    `R$ ${car.price} x${dates.length} diária`
 
                             }
                         </RentalPriceQuota>

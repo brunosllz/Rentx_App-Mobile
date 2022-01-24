@@ -35,12 +35,12 @@ export function CarCard({ data, ...rest }: Props) {
 
                 <AboutInfoWrapper>
                     <Period>
-                        {data.rent.period}
+                        {data.period}
                     </Period>
 
                     <PriceAndtypeWrapper>
                         <Price>
-                            {`R$ ${data.rent.price}`}
+                            {`R$ ${data.price}`}
                         </Price>
 
                         <MotorIcon width={20} height={20} />
