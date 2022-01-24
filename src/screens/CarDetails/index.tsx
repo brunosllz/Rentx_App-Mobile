@@ -23,7 +23,6 @@ import {
     useAnimatedScrollHandler,
     useAnimatedStyle,
     interpolate,
-    useDerivedValue,
     Extrapolate
 } from 'react-native-reanimated'
 
