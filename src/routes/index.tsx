@@ -4,13 +4,14 @@ import { useAuth } from '../hook/auth';
 
 import { AppTabRoutes } from './app.tab.routes';
 import { AuthRoutes } from './auth.routes';
+import { AppStackRoutes } from './app.stack.routes';
 
 export function Routes() {
     const { user } = useAuth();
 
     return (
         <NavigationContainer>
-            {user ? <AppTabRoutes /> : <AuthRoutes />}
+            {user ? <AppStackRoutes /> : <AuthRoutes />}
         </NavigationContainer>
     );
 }
