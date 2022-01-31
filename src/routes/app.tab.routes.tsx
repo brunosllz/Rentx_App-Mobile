@@ -1,17 +1,16 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { RFValue } from "react-native-responsive-fontsize";
+import { useTheme } from "styled-components";
 
 import { Home } from '../screens/Home';
 import { MyCar } from "../screens/MyCar";
-import { AppStackRoutes } from "./app.stack.routes";
-import { useTheme } from "styled-components";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
 import HomeSvg from '../assets/home.svg';
 import CarSvg from '../assets/car.svg';
 import PeopleSvg from '../assets/peopleMenu.svg';
-import { RFValue } from "react-native-responsive-fontsize";
 
 export function AppTabRoutes() {
     const theme = useTheme();
