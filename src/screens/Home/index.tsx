@@ -34,20 +34,29 @@ export function Home() {
     }
 
     useEffect(() => {
+        let isMounted = true;
         async function fetchCars() {
             try {
                 const response = await api.get('/cars');
-                setcars(response.data);
 
-                setloading(false);
+                if (isMounted) {
+                    setcars(response.data);
+                }
             } catch (error) {
                 Alert.alert("Não foi possível carregar os carrros.");
 
                 console.log(error);
+            } finally {
+                if (isMounted) {
+                    setloading(false);
+                }
             }
         }
 
         fetchCars();
+        return () => {
+            isMounted = false;
+        }
     }, []);
 
     return (
