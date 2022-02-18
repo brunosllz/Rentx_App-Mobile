@@ -1,8 +1,9 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { TouchableOpacity } from 'react-native';
 
 interface OptionsProps {
    active: boolean;
@@ -94,11 +95,13 @@ export const ProfileOptions = styled.View`
    margin-bottom: ${RFValue(24)}px;
 `;
 
-export const Option = styled.View<OptionsProps>`
+export const Option = styled(TouchableOpacity) <OptionsProps>`
    padding-bottom: 14px;
 
-   border-bottom-width: 2px;
-   border-bottom-color: ${({ theme, active }) => active ? theme.COLORS.primary : "transparent"};
+   ${({ active }) => active && css`
+      border-bottom-width: 2px;
+      border-bottom-color: ${({ theme }) => theme.COLORS.primary};
+   `}
 `;
 
 export const OptionTitle = styled.Text<OptionsProps>`

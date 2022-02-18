@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Container,
     Header,
@@ -25,8 +25,14 @@ interface NavigationProps {
 
 export function Profile() {
     const navigation = useNavigation<NavigationProps>();
+    const [option, setOption] = useState<'dataEdit' | 'passwordEdit'>('dataEdit');
+
     function handleBack() {
         navigation.goBack()
+    }
+
+    function handleOptionChange(optionSelected: 'dataEdit' | 'passwordEdit') {
+        setOption(optionSelected);
     }
 
     return (
@@ -58,13 +64,19 @@ export function Profile() {
 
             <Content>
                 <ProfileOptions>
-                    <Option active={true}>
-                        <OptionTitle active={true}>
+                    <Option
+                        active={option === 'dataEdit'}
+                        onPress={() => handleOptionChange('dataEdit')}
+                    >
+                        <OptionTitle active={option === 'dataEdit'}>
                             Dados
                         </OptionTitle>
                     </Option>
-                    <Option active={false}>
-                        <OptionTitle active={false}>
+                    <Option
+                        active={option === 'passwordEdit'}
+                        onPress={() => handleOptionChange('passwordEdit')}
+                    >
+                        <OptionTitle active={option === 'passwordEdit'}>
                             Trocar senha
                         </OptionTitle>
                     </Option>
