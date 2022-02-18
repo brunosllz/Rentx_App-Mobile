@@ -4,6 +4,10 @@ import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
+interface OptionsProps {
+   active: boolean;
+}
+
 export const Container = styled.View`
    background-color: ${({ theme }) => theme.COLORS.background_primary};
    flex: 1;
@@ -69,4 +73,36 @@ export const PhotoEditButton = styled(RectButton)`
    position: absolute;
    bottom: 0px;
    right: 3px;
+`;
+
+export const Content = styled.View`
+   flex: 1;
+
+   margin-top: ${RFValue(122)}px;
+   padding: 0 ${RFValue(24)}px;
+`;
+
+export const ProfileOptions = styled.View`
+   flex-direction: row;
+
+   align-items: center;
+   justify-content: space-around;
+
+   border-bottom-width: 1px;
+   border-bottom-color: ${({ theme }) => theme.COLORS.line};
+
+   margin-bottom: ${RFValue(24)}px;
+`;
+
+export const Option = styled.View<OptionsProps>`
+   padding-bottom: 14px;
+
+   border-bottom-width: 2px;
+   border-bottom-color: ${({ theme, active }) => active ? theme.COLORS.primary : "transparent"};
+`;
+
+export const OptionTitle = styled.Text<OptionsProps>`
+   color: ${({ theme, active }) => active ? theme.COLORS.heading : theme.COLORS.text_detail};
+   font-size: ${RFValue(20)}px;
+   font-family: ${({ theme, active }) => active ? theme.FONTS.primary_semiBold : theme.FONTS.primary_regular};
 `;

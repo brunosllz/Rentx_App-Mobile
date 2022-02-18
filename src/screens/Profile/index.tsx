@@ -8,7 +8,11 @@ import {
     IconButton,
     PhotoContainer,
     Photo,
-    PhotoEditButton
+    PhotoEditButton,
+    Content,
+    ProfileOptions,
+    Option,
+    OptionTitle
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
 
@@ -51,6 +55,21 @@ export function Profile() {
                     </PhotoEditButton>
                 </PhotoContainer>
             </Header>
+
+            <Content>
+                <ProfileOptions>
+                    <Option active={true}>
+                        <OptionTitle active={true}>
+                            Dados
+                        </OptionTitle>
+                    </Option>
+                    <Option active={false}>
+                        <OptionTitle active={false}>
+                            Trocar senha
+                        </OptionTitle>
+                    </Option>
+                </ProfileOptions>
+            </Content>
         </Container>
     );
 }
