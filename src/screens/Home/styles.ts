@@ -1,10 +1,7 @@
 import styled from 'styled-components/native';
-import { FlatList, View } from 'react-native';
+import { FlatList } from 'react-native';
 import { CarDTO } from '../../dtos/CarDTO';
-import { Ionicons } from '@expo/vector-icons';
-import { RectButton, GestureHandlerRootView } from 'react-native-gesture-handler';
-import { RFValue } from 'react-native-responsive-fontsize';
-import Animated from 'react-native-reanimated';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
     flex: 1;
