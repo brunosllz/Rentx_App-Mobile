@@ -53,7 +53,7 @@ function AuthProvider({ children }: AuthProviderProps) {
                     newUser.user_id = user.id,
                         newUser.name = user.name,
                         newUser.email = user.email,
-                        newUser.drive_license = user.drive_license,
+                        newUser.driver_license = user.driver_license,
                         newUser.token = user.token
                 });
             });

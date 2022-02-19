@@ -22,6 +22,7 @@ export function AppTabRoutes() {
                 tabBarActiveTintColor: theme.COLORS.primary,
                 tabBarInactiveTintColor: theme.COLORS.text_detail,
                 tabBarShowLabel: false,
+                tabBarHideOnKeyboard: true,
                 tabBarStyle: {
                     height: 79,
                     backgroundColor: theme.COLORS.background_primary

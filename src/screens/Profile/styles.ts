@@ -11,7 +11,6 @@ interface OptionsProps {
 
 export const Container = styled.View`
    background-color: ${({ theme }) => theme.COLORS.background_primary};
-   flex: 1;
 `;
 
 export const Header = styled.View`
@@ -77,8 +76,6 @@ export const PhotoEditButton = styled(RectButton)`
 `;
 
 export const Content = styled.View`
-   flex: 1;
-
    margin-top: ${RFValue(122)}px;
    padding: 0 ${RFValue(24)}px;
 `;
@@ -108,4 +105,10 @@ export const OptionTitle = styled.Text<OptionsProps>`
    color: ${({ theme, active }) => active ? theme.COLORS.heading : theme.COLORS.text_detail};
    font-size: ${RFValue(20)}px;
    font-family: ${({ theme, active }) => active ? theme.FONTS.primary_semiBold : theme.FONTS.primary_regular};
+`;
+
+export const Section = styled.View``;
+
+export const WrapperInput = styled.View`
+   margin-bottom: ${RFValue(8)}px;
 `;
