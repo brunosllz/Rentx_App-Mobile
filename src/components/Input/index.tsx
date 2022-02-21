@@ -13,9 +13,10 @@ import { Feather } from '@expo/vector-icons';
 interface Props extends TextInputProps {
     iconName: React.ComponentProps<typeof Feather>['name'];
     value?: string;
+    defaultValue?: string;
 }
 
-export function Input({ iconName, value, ...rest }: Props) {
+export function Input({ iconName, value, defaultValue, ...rest }: Props) {
     const [isFocused, setIsFocused] = useState(false);
     const [isFilled, setIsFilled] = useState(false);
 
@@ -27,7 +28,7 @@ export function Input({ iconName, value, ...rest }: Props) {
 
     function handleInputBlur() {
         setIsFocused(false);
-        setIsFilled(!!value);
+        setIsFilled(!!value || !!defaultValue);
     }
 
     return (

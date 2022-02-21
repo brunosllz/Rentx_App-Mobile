@@ -12,6 +12,7 @@ export default {
 
         shape: "#E1E1E8",
         shape_dark: "#29292E",
+        line: "#EBEBF0",
 
         background_primary: "#F4F5F6",
         background_secondary: "#FFFFFF"

@@ -1,17 +1,17 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { RFValue } from "react-native-responsive-fontsize";
+import { useTheme } from "styled-components";
 
 import { Home } from '../screens/Home';
 import { MyCar } from "../screens/MyCar";
-import { AppStackRoutes } from "./app.stack.routes";
-import { useTheme } from "styled-components";
+import { Profile } from "../screens/Profile";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
 import HomeSvg from '../assets/home.svg';
 import CarSvg from '../assets/car.svg';
 import PeopleSvg from '../assets/peopleMenu.svg';
-import { RFValue } from "react-native-responsive-fontsize";
 
 export function AppTabRoutes() {
     const theme = useTheme();
@@ -22,6 +22,7 @@ export function AppTabRoutes() {
                 tabBarActiveTintColor: theme.COLORS.primary,
                 tabBarInactiveTintColor: theme.COLORS.text_detail,
                 tabBarShowLabel: false,
+                tabBarHideOnKeyboard: true,
                 tabBarStyle: {
                     height: 79,
                     backgroundColor: theme.COLORS.background_primary
@@ -30,8 +31,8 @@ export function AppTabRoutes() {
             }}
         >
             <Screen
-                name="Main"
-                component={AppStackRoutes}
+                name="TabHome"
+                component={Home}
                 options={{
                     tabBarIcon: ({ color }) => (
                         <HomeSvg width={RFValue(24)} height={RFValue(24)} fill={color} />)
@@ -47,7 +48,7 @@ export function AppTabRoutes() {
             />
             <Screen
                 name="Profile"
-                component={Home}
+                component={Profile}
                 options={{
                     tabBarIcon: ({ color }) => (
                         <PeopleSvg width={RFValue(24)} height={RFValue(24)} fill={color} />)

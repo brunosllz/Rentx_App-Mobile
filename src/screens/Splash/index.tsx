@@ -14,6 +14,7 @@ import Animated, {
 
 import BrandSvg from '../../assets/brand.svg';
 import LogoSvg from '../../assets/logo.svg';
+import { StatusBar } from 'expo-status-bar';
 
 interface NavigationProps {
     navigate: (screen: string) => void;
@@ -63,6 +64,7 @@ export function Splash() {
 
     return (
         <Container>
+            <StatusBar translucent style='light' />
             <Animated.View style={[brandAnimation, { position: 'absolute' }]}>
                 <BrandSvg width={100} height={70} />
             </Animated.View>
