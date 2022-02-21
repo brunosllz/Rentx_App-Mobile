@@ -61,7 +61,7 @@ export const Photo = styled.Image`
    border-radius: ${RFValue(90)}px
 `;
 
-export const PhotoEditButton = styled(RectButton)`
+export const PhotoSelectButton = styled(RectButton)`
    background-color: ${({ theme }) => theme.COLORS.primary};
    
    width: ${RFValue(40)}px;

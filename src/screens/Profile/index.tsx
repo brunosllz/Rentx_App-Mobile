@@ -8,7 +8,7 @@ import {
     IconButton,
     PhotoContainer,
     Photo,
-    PhotoEditButton,
+    PhotoSelectButton,
     Content,
     ProfileOptions,
     Option,
@@ -25,6 +25,7 @@ import { useAuth } from '../../hook/auth';
 import { useNavigation } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { RFValue } from 'react-native-responsive-fontsize';
+import * as ImagePicker from 'expo-image-picker';
 
 import { BackButton } from '../../components/BackButton';
 import { Input } from '../../components/Input';
@@ -36,6 +37,11 @@ interface NavigationProps {
 
 export function Profile() {
     const { user } = useAuth()
+
+    const [avatar, setAvatar] = useState(user.avatar);
+    const [name, setName] = useState(user.name);
+    const [driverLicense, setDriverLicense] = useState(user.driver_license);
+
     const navigation = useNavigation<NavigationProps>();
     const [option, setOption] = useState<'dataEdit' | 'passwordEdit'>('dataEdit');
 
@@ -45,6 +51,23 @@ export function Profile() {
 
     function handleOptionChange(optionSelected: 'dataEdit' | 'passwordEdit') {
         setOption(optionSelected);
+    }
+
+    async function handleSelectAvatar() {
+        const result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 4],
+            quality: 1
+        });
+
+        if (result.cancelled) {
+            return;
+        }
+
+        if (result.uri) {
+            setAvatar(result.uri);
+        }
     }
 
     return (
@@ -70,9 +93,9 @@ export function Profile() {
                                 source={{ uri: 'https://avatars.githubusercontent.com/u/69438694?v=4' }}
                             />
 
-                            <PhotoEditButton>
+                            <PhotoSelectButton onPress={handleSelectAvatar}>
                                 <IconButton name="camera" size={RFValue(24)} />
-                            </PhotoEditButton>
+                            </PhotoSelectButton>
                         </PhotoContainer>
                     </Header>
 
