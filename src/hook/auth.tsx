@@ -26,6 +26,7 @@ interface SignInCredentials {
 interface AuthContextData {
     user: User;
     signIn: (credentials: SignInCredentials) => Promise<void>;
+    signOut: () => Promise<void>;
 }
 
 interface AuthProviderProps {
@@ -49,19 +50,36 @@ function AuthProvider({ children }: AuthProviderProps) {
 
             const userCollection = database.get<ModelUser>('users');
             await database.write(async () => {
-                await userCollection.create((newUser) => {
+                const dataUser = await userCollection.create((newUser) => {
                     newUser.user_id = user.id,
                         newUser.name = user.name,
                         newUser.email = user.email,
                         newUser.driver_license = user.driver_license,
                         newUser.token = user.token
                 });
-            });
 
-            setData({ ...user, token });
+                dataUser._raw as unknown as User;
+
+                setData(dataUser);
+            });
         } catch (error) {
             throw new Error(error)
         }
+    }
+
+    async function signOut() {
+        try {
+            const userCollection = database.get<ModelUser>('users');
+            await database.write(async () => {
+                const userSelected = await userCollection.find(data.id);
+                userSelected.destroyPermanently();
+            });
+
+            setData({} as User);
+        } catch (error) {
+            throw new Error(error);
+        }
+
     }
 
     useEffect(() => {
@@ -80,7 +98,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     }, [])
 
     return (
-        <AuthContext.Provider value={{ user: data, signIn }}>
+        <AuthContext.Provider value={{ user: data, signIn, signOut }}>
             {children}
         </AuthContext.Provider>
     )

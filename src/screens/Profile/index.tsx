@@ -26,6 +26,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { RFValue } from 'react-native-responsive-fontsize';
 import * as ImagePicker from 'expo-image-picker';
+import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
 
 import { BackButton } from '../../components/BackButton';
 import { Input } from '../../components/Input';
@@ -36,9 +37,9 @@ interface NavigationProps {
 }
 
 export function Profile() {
-    const { user } = useAuth()
+    const { user, signOut } = useAuth();
 
-    const [avatar, setAvatar] = useState(user.avatar);
+    const [avatar, setAvatar] = useState(user.avatar || null);
     const [name, setName] = useState(user.name);
     const [driverLicense, setDriverLicense] = useState(user.driver_license);
 
@@ -64,9 +65,9 @@ export function Profile() {
         if (result.cancelled) {
             return;
         }
-
-        if (result.uri) {
-            setAvatar(result.uri);
+        const { uri } = result as ImageInfo;
+        if (uri) {
+            setAvatar(uri);
         }
     }
 
@@ -83,14 +84,14 @@ export function Profile() {
                             <HeaderTitle>
                                 Editar Perfil
                             </HeaderTitle>
-                            <LogoutButton>
+                            <LogoutButton onPress={signOut}>
                                 <IconButton name='power' size={RFValue(24)} />
                             </LogoutButton>
                         </HeaderActionsContainer>
 
                         <PhotoContainer>
                             <Photo
-                                source={{ uri: 'https://avatars.githubusercontent.com/u/69438694?v=4' }}
+                                source={{ uri: avatar }}
                             />
 
                             <PhotoSelectButton onPress={handleSelectAvatar}>
@@ -127,7 +128,8 @@ export function Profile() {
                                             iconName='user'
                                             placeholder='Nome'
                                             autoCorrect={false}
-                                            defaultValue={user.name}
+                                            onChangeText={setName}
+                                            defaultValue={name}
                                         />
                                     </WrapperInput>
 
@@ -147,7 +149,8 @@ export function Profile() {
                                         placeholder='CNH'
                                         autoCorrect={false}
                                         keyboardType='numeric'
-                                        defaultValue={user.driver_license}
+                                        defaultValue={driverLicense}
+                                        onChangeText={setDriverLicense}
                                     />
                                 </Section>
                                 :
