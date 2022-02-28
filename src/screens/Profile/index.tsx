@@ -14,12 +14,14 @@ import {
     Option,
     OptionTitle,
     Section,
-    WrapperInput
+    WrapperInput,
+    WrapperButton
 } from './styles';
 import {
     Keyboard,
     KeyboardAvoidingView,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    Alert
 } from 'react-native';
 import { useAuth } from '../../hook/auth';
 import { useNavigation } from '@react-navigation/native';
@@ -27,17 +29,19 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { RFValue } from 'react-native-responsive-fontsize';
 import * as ImagePicker from 'expo-image-picker';
 import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
+import * as Yup from 'yup';
 
 import { BackButton } from '../../components/BackButton';
 import { Input } from '../../components/Input';
 import { PasswdInput } from '../../components/PasswdInput';
+import { Button } from '../../components/Button';
 
 interface NavigationProps {
     goBack: () => void;
 }
 
 export function Profile() {
-    const { user, signOut } = useAuth();
+    const { user, signOut, userProfileUpdated } = useAuth();
 
     const [avatar, setAvatar] = useState(user.avatar || null);
     const [name, setName] = useState(user.name);
@@ -71,6 +75,36 @@ export function Profile() {
         }
     }
 
+    async function handleUserProfileUpdated() {
+        try {
+            const schema = Yup.object().shape({
+                driverLicense: Yup.string().required('CNH é obrigratória.'),
+                name: Yup.string().required('Nome é obrigatório.')
+            });
+
+            const data = { name, driverLicense };
+            await schema.validate(data);
+
+            userProfileUpdated({
+                id: user.id,
+                user_id: user.user_id,
+                email: user.email,
+                name: name,
+                driver_license: driverLicense,
+                avatar: avatar,
+                token: user.token
+            });
+
+            Alert.alert('Perfil atulizado!');
+        } catch (error) {
+            if (error instanceof Yup.ValidationError) {
+                Alert.alert('Ops', error.message)
+            } else {
+                Alert.alert('Não foi possível atulizar os dados do perfil!')
+            }
+        }
+    }
+
     return (
         <KeyboardAvoidingView behavior='position' enabled>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -84,6 +118,7 @@ export function Profile() {
                             <HeaderTitle>
                                 Editar Perfil
                             </HeaderTitle>
+                            {/* implementar a logica, para informar o usário de realmente deseja sair da aplicação */}
                             <LogoutButton onPress={signOut}>
                                 <IconButton name='power' size={RFValue(24)} />
                             </LogoutButton>
@@ -175,6 +210,13 @@ export function Profile() {
                                     />
                                 </Section>
                         }
+                        <WrapperButton>
+                            <Button
+                                title='Salvar alterações'
+                                color='red'
+                                onPress={handleUserProfileUpdated}
+                            />
+                        </WrapperButton>
                     </Content>
                 </Container>
             </TouchableWithoutFeedback>

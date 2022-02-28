@@ -14,7 +14,7 @@ import {
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
     Keyboard,
-    BackHandler
+    Alert
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import * as yup from 'yup';
@@ -48,7 +48,7 @@ export function Signin() {
             signIn({ email, password });
         } catch (error) {
             if (error instanceof yup.ValidationError) {
-                error.message
+                Alert.alert('Ops', error.message);
             }
 
             console.log(error);
