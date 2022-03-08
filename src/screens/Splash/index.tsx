@@ -22,7 +22,7 @@ interface NavigationProps {
 
 export function Splash() {
     const splashAnimated = useSharedValue(0);
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProps>();
 
     const brandAnimation = useAnimatedStyle(() => {
         return {
@@ -43,14 +43,14 @@ export function Splash() {
     })
 
     function startApp() {
-        navigation.dispatch(
-            CommonActions.reset({
-                index: 0,
-                routes: [{ name: 'Signin' }]
-            })
-        )
+        // navigation.dispatch(
+        //     CommonActions.reset({
+        //         index: 0,
+        //         routes: [{ name: 'Signin' }]
+        //     })
+        // )
 
-        // navigation.navigate('Home');
+        navigation.navigate('Signin');
     }
 
     useEffect(() => {
@@ -59,8 +59,8 @@ export function Splash() {
                 'worklet'
                 runOnJS(startApp)();
             }
-        )
-    }, [])
+        );
+    }, []);
 
     return (
         <Container>

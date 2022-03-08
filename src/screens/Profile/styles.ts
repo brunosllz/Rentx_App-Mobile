@@ -112,3 +112,7 @@ export const Section = styled.View``;
 export const WrapperInput = styled.View`
    margin-bottom: ${RFValue(8)}px;
 `;
+
+export const WrapperButton = styled.View`
+   margin-top: ${RFValue(16)}px;
+`;

@@ -14,31 +14,36 @@ import {
     Option,
     OptionTitle,
     Section,
-    WrapperInput
+    WrapperInput,
+    WrapperButton
 } from './styles';
 import {
     Keyboard,
     KeyboardAvoidingView,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    Alert
 } from 'react-native';
 import { useAuth } from '../../hook/auth';
 import { useNavigation } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { RFValue } from 'react-native-responsive-fontsize';
 import * as ImagePicker from 'expo-image-picker';
+import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
+import * as Yup from 'yup';
 
 import { BackButton } from '../../components/BackButton';
 import { Input } from '../../components/Input';
 import { PasswdInput } from '../../components/PasswdInput';
+import { Button } from '../../components/Button';
 
 interface NavigationProps {
     goBack: () => void;
 }
 
 export function Profile() {
-    const { user } = useAuth()
+    const { user, signOut, userProfileUpdated } = useAuth();
 
-    const [avatar, setAvatar] = useState(user.avatar);
+    const [avatar, setAvatar] = useState(user.avatar || null);
     const [name, setName] = useState(user.name);
     const [driverLicense, setDriverLicense] = useState(user.driver_license);
 
@@ -64,9 +69,39 @@ export function Profile() {
         if (result.cancelled) {
             return;
         }
+        const { uri } = result as ImageInfo;
+        if (uri) {
+            setAvatar(uri);
+        }
+    }
 
-        if (result.uri) {
-            setAvatar(result.uri);
+    async function handleUserProfileUpdated() {
+        try {
+            const schema = Yup.object().shape({
+                driverLicense: Yup.string().required('CNH é obrigratória.'),
+                name: Yup.string().required('Nome é obrigatório.')
+            });
+
+            const data = { name, driverLicense };
+            await schema.validate(data);
+
+            userProfileUpdated({
+                id: user.id,
+                user_id: user.user_id,
+                email: user.email,
+                name: name,
+                driver_license: driverLicense,
+                avatar: avatar,
+                token: user.token
+            });
+
+            Alert.alert('Perfil atulizado!');
+        } catch (error) {
+            if (error instanceof Yup.ValidationError) {
+                Alert.alert('Ops', error.message)
+            } else {
+                Alert.alert('Não foi possível atulizar os dados do perfil!')
+            }
         }
     }
 
@@ -83,14 +118,15 @@ export function Profile() {
                             <HeaderTitle>
                                 Editar Perfil
                             </HeaderTitle>
-                            <LogoutButton>
+                            {/* implementar a logica, para informar o usário de realmente deseja sair da aplicação */}
+                            <LogoutButton onPress={signOut}>
                                 <IconButton name='power' size={RFValue(24)} />
                             </LogoutButton>
                         </HeaderActionsContainer>
 
                         <PhotoContainer>
                             <Photo
-                                source={{ uri: 'https://avatars.githubusercontent.com/u/69438694?v=4' }}
+                                source={{ uri: avatar }}
                             />
 
                             <PhotoSelectButton onPress={handleSelectAvatar}>
@@ -127,7 +163,8 @@ export function Profile() {
                                             iconName='user'
                                             placeholder='Nome'
                                             autoCorrect={false}
-                                            defaultValue={user.name}
+                                            onChangeText={setName}
+                                            defaultValue={name}
                                         />
                                     </WrapperInput>
 
@@ -147,7 +184,8 @@ export function Profile() {
                                         placeholder='CNH'
                                         autoCorrect={false}
                                         keyboardType='numeric'
-                                        defaultValue={user.driver_license}
+                                        defaultValue={driverLicense}
+                                        onChangeText={setDriverLicense}
                                     />
                                 </Section>
                                 :
@@ -172,6 +210,13 @@ export function Profile() {
                                     />
                                 </Section>
                         }
+                        <WrapperButton>
+                            <Button
+                                title='Salvar alterações'
+                                color='red'
+                                onPress={handleUserProfileUpdated}
+                            />
+                        </WrapperButton>
                     </Content>
                 </Container>
             </TouchableWithoutFeedback>

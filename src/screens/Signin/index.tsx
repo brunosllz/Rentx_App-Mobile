@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Button } from '../../components/Button';
 import {
     Container,
@@ -13,7 +13,8 @@ import {
 import {
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
-    Keyboard
+    Keyboard,
+    Alert
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import * as yup from 'yup';
@@ -24,6 +25,7 @@ import { Input } from '../../components/Input';
 import { PasswdInput } from '../../components/PasswdInput';
 
 interface NavigationProps {
+    goBack: () => void;
     navigate: (screen: string) => void
 }
 
@@ -46,7 +48,7 @@ export function Signin() {
             signIn({ email, password });
         } catch (error) {
             if (error instanceof yup.ValidationError) {
-                error.message
+                Alert.alert('Ops', error.message);
             }
 
             console.log(error);

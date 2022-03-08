@@ -4,13 +4,15 @@ import { useAuth } from '../hook/auth';
 
 import { AuthRoutes } from './auth.routes';
 import { AppStackRoutes } from './app.stack.routes';
+import { LoadAnimation } from '../components/LoadAnimation';
 
 export function Routes() {
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
 
     return (
-        <NavigationContainer>
-            {user.id ? <AppStackRoutes /> : <AuthRoutes />}
-        </NavigationContainer>
+        loading ? <LoadAnimation /> :
+            <NavigationContainer>
+                {user.id ? <AppStackRoutes /> : <AuthRoutes />}
+            </NavigationContainer>
     );
 }

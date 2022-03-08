@@ -28,7 +28,7 @@ export function Input({ iconName, value, defaultValue, ...rest }: Props) {
 
     function handleInputBlur() {
         setIsFocused(false);
-        setIsFilled(!!value || !!defaultValue);
+        setIsFilled(!!value);
     }
 
     return (
@@ -39,12 +39,13 @@ export function Input({ iconName, value, defaultValue, ...rest }: Props) {
                 <Feather
                     name={iconName}
                     size={RFValue(24)}
-                    color={(isFocused || isFilled) ? theme.COLORS.primary : theme.COLORS.text}
+                    color={(isFocused || isFilled || !!defaultValue) ? theme.COLORS.primary : theme.COLORS.text}
                 />
 
             </WrapperIcon>
 
             <InputText
+                defaultValue={defaultValue}
                 onFocus={handleInputFocus}
                 onBlur={handleInputBlur}
                 isFocused={isFocused}
